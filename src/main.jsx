@@ -11,7 +11,7 @@ import { ColorModeScript } from "@chakra-ui/react";
 const styles = {
   global: (props) => ({
     body: {
-      color: mode("gray.600", "whiteAlpha.900")(props),
+      color: mode("black", "whiteAlpha.900")(props),
       bg: mode("#FFFFFF", "#06141D")(props),
     },
   }),

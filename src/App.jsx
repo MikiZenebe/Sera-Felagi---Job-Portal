@@ -1,10 +1,11 @@
 import React from "react";
-import { Navbar } from "./components";
+import { HeroSection, Navbar } from "./components";
 
 export default function App() {
   return (
-    <div className="px-12 py-5">
+    <div className="px-14 py-7">
       <Navbar />
+      <HeroSection />
     </div>
   );
 }

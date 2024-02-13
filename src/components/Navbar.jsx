@@ -26,7 +26,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Box px={4}>
+      <Box>
         <Flex className="flex justify-between items-center">
           <Flex className="flex gap-1 font-bold text-2xl">
             <Text
