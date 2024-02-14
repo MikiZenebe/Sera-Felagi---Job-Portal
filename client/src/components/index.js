@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
-import HeroSection from "./HeroSection";
+import HeroSection from "./HomeComp/HeroSection";
+import StepCards from "./HomeComp/StepCards";
 
-export { Navbar, HeroSection };
+export { Navbar, HeroSection, StepCards };
