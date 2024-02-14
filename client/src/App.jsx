@@ -5,7 +5,10 @@ import HomePage from "./pages/HomePage";
 export default function App() {
   return (
     <div className="px-14 py-7">
-      <Navbar />
+      <header className="sticky top-0 z-50">
+        <Navbar />
+      </header>
+
       <HomePage />
     </div>
   );

@@ -27,7 +27,7 @@ export default function Navbar() {
   return (
     <>
       <Box>
-        <Flex className="flex justify-between items-center">
+        <Flex className="flex justify-between items-center py-2 backdrop-blur-lg">
           <Flex className="flex gap-1 font-bold text-2xl">
             <Text
               color={useColorModeValue("", "white")}

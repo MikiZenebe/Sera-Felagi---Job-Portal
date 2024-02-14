@@ -10,7 +10,7 @@ import { PlayCircleIcon, Briefcase } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <Container maxW={"600px"} className="pt-[80px]">
+    <Container maxW={"600px"} className="pt-[80px] pb-[120px] ">
       <Flex className="flex flex-col gap-4">
         <Box className="text-center w-fit mx-auto px-5 py-2 bg-[#ffeae1] flex items-center gap-2 rounded-full">
           <Briefcase size={20} className="font-semibold text-amber-700" />
