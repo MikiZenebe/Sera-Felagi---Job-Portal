@@ -10,7 +10,7 @@ import React from "react";
 
 export default function StepCards() {
   return (
-    <Container className="flex flex-col gap-8" maxW={"full"}>
+    <Container className="flex flex-col gap-8 pb-[120px]" maxW={"full"}>
       <Flex className="flex flex-col gap-2">
         <Text className="text-3xl mx-auto font-bold text-center flex gap-2">
           Get Hired In
@@ -25,7 +25,7 @@ export default function StepCards() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto gap-6">
         <Box
-          bg={useColorModeValue("white", "#9f6afa")}
+          bg={useColorModeValue("white", "#183242")}
           color={useColorModeValue("gray.500", "white")}
           className="p-7 flex flex-col gap-2 max-w-[300px] card shadow-xl rounded-lg cursor-pointer"
         >
@@ -38,14 +38,14 @@ export default function StepCards() {
           >
             Create an Account
           </Text>
-          <Text className="text-sm font-normal">
+          <Text className="text-sm font-normal text-gray-400 ">
             Signup fot the jop applicant profile, mention your qualification,
             past experiences, and expertise, and scope your interests
           </Text>
         </Box>
 
         <Box
-          bg={useColorModeValue("white", "#9f6afa")}
+          bg={useColorModeValue("white", "#183242")}
           color={useColorModeValue("gray.500", "white")}
           className="p-7 flex flex-col gap-2 max-w-[300px] card shadow-xl rounded-lg cursor-pointer"
         >
@@ -54,11 +54,11 @@ export default function StepCards() {
           </Text>
           <Text
             color={useColorModeValue("black", "white")}
-            className="text-lg font-bold"
+            className="text-lg font-bold text-gray-400 "
           >
             Search Job
           </Text>
-          <Text className="text-sm font-normal">
+          <Text className="text-sm font-normal text-gray-400 ">
             Once you set your job hunting parameters, you'll find many openings
             related to your career interest on the home page and even filter out
             some of the best job openings
@@ -66,7 +66,7 @@ export default function StepCards() {
         </Box>
 
         <Box
-          bg={useColorModeValue("white", "#9f6afa")}
+          bg={useColorModeValue("white", "#183242")}
           color={useColorModeValue("gray.500", "white")}
           className="p-7 flex flex-col gap-2 max-w-[300px] card shadow-xl rounded-lg cursor-pointer"
         >
@@ -79,7 +79,7 @@ export default function StepCards() {
           >
             Upload CV/ Resume
           </Text>
-          <Text className="text-sm font-normal">
+          <Text className="text-sm font-normal text-gray-400 ">
             From numerous job openings, shortlist the right-match vacancy to
             your profile and apply right after by uploading your CV/ Resume and
             answering a couple of questions, if any.
@@ -87,7 +87,7 @@ export default function StepCards() {
         </Box>
 
         <Box
-          bg={useColorModeValue("white", "#9f6afa")}
+          bg={useColorModeValue("white", "#183242")}
           color={useColorModeValue("gray.500", "white")}
           className="p-7 flex flex-col gap-2 max-w-[300px] card shadow-xl rounded-lg cursor-pointer"
         >
@@ -100,7 +100,7 @@ export default function StepCards() {
           >
             Get Job
           </Text>
-          <Text className="text-sm font-normal">
+          <Text className="text-sm font-normal text-gray-400 ">
             After applying, wait for some time schedule an interview, and if
             everything goes right, then get hired more quickly than traditional
             hiring methods.
