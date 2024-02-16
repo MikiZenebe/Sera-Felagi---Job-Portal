@@ -12,9 +12,9 @@ export default function StepCards() {
   return (
     <Container className="flex flex-col gap-8 pb-[120px]" maxW={"full"}>
       <Flex className="flex flex-col gap-2">
-        <Text className="text-3xl mx-auto font-bold text-center flex gap-2">
+        <Text className="text-2xl sm:text-3xl sm:mx-auto font-bold text-center sm:flex gap-3">
           Get Hired In
-          <span className="text-[#935af7]">4 Quick Easy Steps</span>
+          <span className="text-[#935af7]"> 4 Quick Easy Steps </span>
         </Text>
 
         <Text className="text-center font-medium text-gray-400 leading-[30px] py-1 max-w-[600px] mx-auto">

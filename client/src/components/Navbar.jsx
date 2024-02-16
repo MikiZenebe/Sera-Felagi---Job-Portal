@@ -26,7 +26,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Box className="px-14 my-4">
+      <Box className="px-4 sm:px-14 my-4">
         <Flex className="flex justify-between items-center py-3 backdrop-blur-lg  ">
           <Flex className="flex gap-1 font-bold text-2xl">
             <Text
