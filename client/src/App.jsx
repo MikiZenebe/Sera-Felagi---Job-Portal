@@ -1,6 +1,7 @@
-import React from "react";
-import { HeroSection, Navbar, Footer } from "./components";
+import { Routes, Route } from "react-router-dom";
+import { Navbar, Footer } from "./components";
 import HomePage from "./pages/HomePage";
+import SignupPage from "./pages/SignupPage";
 
 export default function App() {
   return (
@@ -10,7 +11,10 @@ export default function App() {
       </header>
 
       <div className="px-14 py-7">
-        <HomePage />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Routes>
       </div>
 
       <footer className="sticky  z-50  top-0">

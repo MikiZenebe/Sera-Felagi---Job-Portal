@@ -1,5 +1,5 @@
 "use client";
-
+import { Link } from "react-router-dom";
 import {
   Box,
   Flex,
@@ -65,7 +65,7 @@ export default function Navbar() {
                 bg={useColorModeValue("#6A38C2", "#6A38C2")}
                 color={useColorModeValue("white", "white")}
               >
-                Sign Up
+                <Link to={`/signup`}>Sign Up</Link>
               </Button>
             </Box>
             <Box className="cursor-pointer" onClick={toggleColorMode}>
