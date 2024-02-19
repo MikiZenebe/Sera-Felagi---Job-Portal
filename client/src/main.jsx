@@ -8,6 +8,8 @@ import { mode } from "@chakra-ui/theme-tools";
 import { extendTheme } from "@chakra-ui/theme-utils";
 import { ColorModeScript } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store.js";
 
 const styles = {
   global: (props) => ({
@@ -35,10 +37,12 @@ const theme = extendTheme({ config, styles, colors });
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ChakraProvider theme={theme}>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <App />
-      </ChakraProvider>
+      <Provider store={store}>
+        <ChakraProvider theme={theme}>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <App />
+        </ChakraProvider>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
