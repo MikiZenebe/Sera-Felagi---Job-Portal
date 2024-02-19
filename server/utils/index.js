@@ -12,10 +12,9 @@ export const compareString = async (userPassword, password) => {
   return isMatch;
 };
 
-const secret_key = "hjhd468dsd";
 //JSON Web-Token
 export function createJWT(id) {
-  return JWT.sign({ userId: id }, secret_key, {
+  return JWT.sign({ userId: id }, process.env.JWT_SECRET, {
     expiresIn: "15d",
   });
 }
