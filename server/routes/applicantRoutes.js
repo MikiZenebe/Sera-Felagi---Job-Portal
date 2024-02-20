@@ -1,15 +1,31 @@
 import express from "express";
 import {
+  addAddress,
   addEducation,
   addPortfolio,
-  getEducation,
+  addSkills,
+  allUserAddress,
+  allUserEducation,
+  allUserPortfolio,
+  allUserSkill,
+  deleteSkills,
+  myProfile,
+  updateSkills,
 } from "../controllers/applicantController.js";
 import protectRoute from "../middlewares/protectRoute.js";
 
 const router = express.Router();
 
-router.post("/addEdu", protectRoute, addEducation);
-router.post("/getEdu", getEducation);
+router.post("/addEdu", addEducation);
+router.post("/allEdu", allUserEducation);
 router.post("/addPort", addPortfolio);
+router.post("/allPort", allUserPortfolio);
+router.post("/addAddress", addAddress);
+router.post("/allAddress", allUserAddress);
+router.post("/addSkills", addSkills);
+router.get("/allSkills", allUserSkill);
+router.put("/updateSkills", updateSkills);
+router.delete("/deleteSkills", deleteSkills);
+router.post("/profile/me", myProfile);
 
 export default router;

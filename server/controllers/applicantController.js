@@ -2,13 +2,16 @@ import Education from "../models/applicant/appEduModel.js";
 import Portfolio from "../models/applicant/appPortfModel.js";
 import Skill from "../models/applicant/appSkillModel.js";
 import Address from "../models/applicant/appAddrModel.js";
+import User from "../models/userModel.js";
 
 //Applicant Eduction
 export const addEducation = async (req, res) => {
   try {
-    const { instName, DepName, EduLevel, studyFrom, studyTo } = req.body;
+    const { userId, instName, DepName, EduLevel, studyFrom, studyTo } =
+      req.body;
 
     const newEdu = await Education.create({
+      userId,
       instName,
       DepName,
       EduLevel,
@@ -23,7 +26,7 @@ export const addEducation = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-export const getEducation = async (req, res) => {
+export const allUserEducation = async (req, res) => {
   try {
     const { userId } = req.body.id;
     const getEdu = await Education.findById(userId);
@@ -38,8 +41,7 @@ export const getEducation = async (req, res) => {
 //Applicant Portfolio
 export const addPortfolio = async (req, res) => {
   try {
-    const { userId } = req.body.user;
-    const { projTitle, projDesc, projLink, img } = req.body;
+    const { userId, projTitle, projDesc, projLink, img } = req.body;
 
     const newPort = await Portfolio.create({
       userId,
@@ -56,14 +58,108 @@ export const addPortfolio = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-// export const getEducation = async (req, res) => {
-//   try {
-//     const { userId } = req.body.id;
-//     const getEdu = await Education.findById(userId);
+export const allUserPortfolio = async (req, res) => {
+  try {
+    const { userId } = req.body.id;
+    const getPort = await Portfolio.findById(userId);
 
-//     res.status(200).json(getEdu);
-//   } catch (error) {
-//     console.log("Error in getting education", error.message);
-//     res.status(500).json({ error: error.message });
-//   }
-// };
+    res.status(200).json(getPort);
+  } catch (error) {
+    console.log("Error in getting portfolio", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+//Applicant Address
+export const addAddress = async (req, res) => {
+  try {
+    const { userId, location, mobileNo, github, linkedin, telegram } = req.body;
+
+    const newAddress = await Address.create({
+      userId,
+      location,
+      mobileNo,
+      github,
+      linkedin,
+      telegram,
+    });
+
+    await newAddress.save();
+    res.status(200).json(newAddress);
+  } catch (error) {
+    console.log("Error in adding address", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+export const allUserAddress = async (req, res) => {
+  try {
+    const { userId } = req.body.id;
+
+    const getAddr = await Address.findById(userId);
+    res.status(200).json(getAddr);
+  } catch (error) {
+    console.log("Error in getting address", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+//Applicant Skills
+export const addSkills = async (req, res) => {
+  try {
+    const { userId, skillType, skillStatus } = req.body;
+
+    const newSkill = await Skill.create({
+      userId,
+      skillType,
+      skillStatus,
+    });
+
+    await newSkill.save();
+    res.status(200).json(newSkill);
+  } catch (error) {
+    console.log("Error in adding skills", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+export const allUserSkill = async (req, res) => {
+  try {
+    const { userId } = req.body.id;
+
+    const getSkill = await Skill.findById(userId);
+    res.status(200).json(getSkill);
+  } catch (error) {
+    console.log("Error in getting skills", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+export const updateSkills = async (req, res) => {
+  const { skillType, skillStatus, id } = req.body;
+  const skill = await Skill.findOneAndUpdate({ _id: id });
+  skill.skillType = skillType;
+  skill.skillStatus = skillStatus;
+  await skill.save();
+
+  res.status(200).json("Updated");
+};
+export const deleteSkills = async (req, res) => {
+  try {
+    const { _id } = req.body.id;
+    await Skill.findOneAndDelete(_id);
+    res.status(200).json("Deleted successfully");
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({ message: error.message });
+  }
+};
+
+//User Profile
+export const myProfile = async (req, res) => {
+  try {
+    const { _id } = req.body.id;
+    await User.find(_id).select("-password");
+    res.status(200).json("Worked");
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({ message: error.message });
+  }
+};
