@@ -12,7 +12,6 @@ import {
   myProfile,
   updateSkills,
 } from "../controllers/applicantController.js";
-import protectRoute from "../middlewares/protectRoute.js";
 
 const router = express.Router();
 
