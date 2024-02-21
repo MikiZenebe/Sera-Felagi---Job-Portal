@@ -55,3 +55,52 @@ export const getSingleJob = async (req, res) => {
     console.log("Error in getting job: ", error.message);
   }
 };
+export const applyJob = async (req, res) => {
+  const {
+    userId,
+    jobId,
+    AppliName,
+    coverLetter,
+    availability,
+    Assessment,
+    status,
+  } = req.body;
+
+  try {
+    const jobExist = await Job.findById(jobId);
+    if (!jobExist) {
+      return "Job is not found";
+    }
+
+    const apply = await Application.create({
+      userId,
+      jobId,
+      AppliName,
+      coverLetter,
+      availability,
+      Assessment,
+      status,
+    });
+    await apply.save();
+
+    const obj = await Job.findById(jobId);
+    obj.jobCount.push(userId);
+    await obj.save();
+
+    res.send("New apply is Added");
+  } catch (error) {}
+};
+export const requiredSkill = async (req, res) => {
+  const { jobId, reqSkill } = req.body;
+
+  try {
+    const addSkill = await ReqSkill.create({
+      jobId,
+      reqSkill,
+    });
+    await addSkill.save();
+    res.send("New job skill is Added");
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};

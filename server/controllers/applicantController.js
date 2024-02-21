@@ -9,9 +9,11 @@ export const addEducation = async (req, res) => {
   try {
     const { userId, instName, DepName, EduLevel, studyFrom, studyTo } =
       req.body;
+    const user = await User.findById(userId);
 
     const newEdu = await Education.create({
       userId,
+      name: user.name,
       instName,
       DepName,
       EduLevel,
@@ -28,8 +30,8 @@ export const addEducation = async (req, res) => {
 };
 export const allUserEducation = async (req, res) => {
   try {
-    const { userId } = req.body.id;
-    const getEdu = await Education.findById(userId);
+    const { userId } = req.body;
+    const getEdu = await Education.find({ userId });
 
     res.status(200).json(getEdu);
   } catch (error) {
@@ -60,8 +62,8 @@ export const addPortfolio = async (req, res) => {
 };
 export const allUserPortfolio = async (req, res) => {
   try {
-    const { userId } = req.body.id;
-    const getPort = await Portfolio.findById(userId);
+    const { userId } = req.body;
+    const getPort = await Portfolio.find({ userId });
 
     res.status(200).json(getPort);
   } catch (error) {
@@ -123,9 +125,9 @@ export const addSkills = async (req, res) => {
 };
 export const allUserSkill = async (req, res) => {
   try {
-    const { userId } = req.body.id;
+    const { userId } = req.body;
 
-    const getSkill = await Skill.findById(userId);
+    const getSkill = await Skill.find({ userId });
     res.status(200).json(getSkill);
   } catch (error) {
     console.log("Error in getting skills", error.message);

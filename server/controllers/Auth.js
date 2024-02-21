@@ -1,5 +1,6 @@
 import User from "../models/userModel.js";
 import { compareString, createJWT, hashString } from "../utils/index.js";
+import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
   const { name, username, email, password, userType } = req.body;
@@ -39,10 +40,10 @@ export const login = async (req, res, next) => {
     }
 
     //Find a user by email
-    const user = await User.findOne({ email }).select("+password");
+    const user = await User.findOne({ email });
 
     if (!user) {
-      next("Invalid email or password");
+      next("User not found");
       return;
     }
 
@@ -55,7 +56,7 @@ export const login = async (req, res, next) => {
     }
 
     //remove the password from the user object for security reasons.
-    user.password = undefined;
+    delete user.password;
 
     const token = createJWT(user?._id);
 
