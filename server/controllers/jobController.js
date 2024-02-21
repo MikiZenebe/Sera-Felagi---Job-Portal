@@ -99,7 +99,104 @@ export const requiredSkill = async (req, res) => {
       reqSkill,
     });
     await addSkill.save();
-    res.send("New job skill is Added");
+    res.status(200).json(addSkill);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+export const jobDetail = async (req, res) => {
+  const { jobId, aboutcom, numOfposi, benefits, addiInfo } = req.body;
+
+  try {
+    const detail = await JobDetail.create({
+      jobId,
+      aboutcom,
+      numOfposi,
+      benefits,
+      addiInfo,
+    });
+    await detail.save();
+    res.status(200).json(detail);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+export const myJobPost = async (req, res) => {
+  const { userId } = req.body;
+
+  try {
+    const myJob = await Job.find({ userId });
+    res.status(200).json(myJob);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+export const userByJobId = async (req, res) => {
+  const { jobId } = req.body;
+
+  try {
+    const userByJid = await Application.find({ jobId });
+    res.status(200).json(userByJid);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+export const jobAppliById = async (req, res) => {
+  const { userId } = req.body;
+
+  try {
+    const application = await Application.find({ userId });
+    if (!application) {
+      return res.status(404).json({ message: "Application not found" });
+    }
+    res.status(200).json(application);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+export const getJobDetail = async (req, res) => {
+  const { jobId } = req.body;
+
+  try {
+    const getDetail = await JobDetail.find({ jobId });
+    if (!getDetail) {
+      return res.status(404).json({ message: "Detail not found" });
+    }
+    res.status(200).json(getDetail);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+export const getRequiredSkill = async (req, res) => {
+  const { jobId } = req.body;
+
+  try {
+    const getRequired = await ReqSkill.find({ jobId });
+    if (!getRequired) {
+      return res.status(404).json({ message: "Required skill not found" });
+    }
+    res.status(200).json(getRequired);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+export const applicationById = async (req, res) => {
+  try {
+    Application.find({ _id: req.params.id });
+    res.status(200).json("Yes");
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+};
+export const appRequest = async (req, res) => {
+  const { _id } = req.body;
+
+  try {
+    const appliRequest = await Application.find({ _id });
+    appliRequest[0].status = req.body.stausType;
+    await appliRequest[0].save();
+
+    res.status(200).json(appliRequest);
   } catch (error) {
     return res.status(400).json({ message: error });
   }

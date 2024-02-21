@@ -4,7 +4,15 @@ import {
   applyJob,
   getAllJob,
   getSingleJob,
+  jobDetail,
+  myJobPost,
   requiredSkill,
+  userByJobId,
+  jobAppliById,
+  getJobDetail,
+  getRequiredSkill,
+  applicationById,
+  appRequest,
 } from "../controllers/jobController.js";
 import { verifyToken } from "../middlewares/auth.js";
 
@@ -13,8 +21,16 @@ const router = express.Router();
 router.post("/addJob", verifyToken, addJob);
 router.post("/reqSkill", verifyToken, requiredSkill);
 router.post("/applyJob", verifyToken, applyJob);
+router.post("/addInfo", verifyToken, jobDetail);
+router.post("/myJobPost", verifyToken, myJobPost);
+router.post("/userByjobId", verifyToken, userByJobId);
+router.post("/appliedJob", verifyToken, jobAppliById);
+router.post("/appReq", verifyToken, appRequest);
 
 router.get("/getAllJob", verifyToken, getAllJob);
 router.get("/getJob/:id", verifyToken, getSingleJob);
+router.get("/jobDetail/:id", verifyToken, getJobDetail);
+router.get("/reqSkill/:id", verifyToken, getRequiredSkill);
+router.get("/application/:id", verifyToken, applicationById);
 
 export default router;
