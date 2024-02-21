@@ -38,16 +38,6 @@ export default function SignupPage() {
 
     const user = { name, username, email, password, userType: itemSelect };
     dispatch(registerUser(user));
-
-    if (registerUser) {
-      toast({
-        title: "Register",
-        description: "User Registerd 🚀🚀",
-        isClosable: true,
-        duration: 1500,
-        status: "success",
-      });
-    }
   };
 
   return (
