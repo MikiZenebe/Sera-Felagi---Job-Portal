@@ -17,10 +17,10 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { EyeIcon, EyeOff } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../redux/actions/authAction";
+import { loginUser, registerUser } from "../redux/actions/authAction";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
@@ -32,7 +32,11 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const registerState = useSelector((state) => state.authReducer);
+  useEffect(() => {
+    if (localStorage.getItem("currentUser")) {
+      navigate(`/jobList`);
+    }
+  }, [navigate]);
 
   const interpretResponse = (response) => {
     if (response.response === "success" && response.responseCode === 200) {
@@ -44,7 +48,7 @@ export default function LoginPage() {
         duration: 1500,
         position: "top",
       });
-      navigate(`/login`);
+      navigate(`/jobList`);
     } else {
       toast({
         title: "Error",
@@ -57,17 +61,14 @@ export default function LoginPage() {
     }
   };
 
-  const handleRegister = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
     const user = {
-      name,
-      username,
       email,
       password,
-      userType: itemSelect,
     };
-    dispatch(registerUser(user, interpretResponse));
+    dispatch(loginUser(user, interpretResponse));
   };
 
   return (
@@ -130,7 +131,7 @@ export default function LoginPage() {
 
               <Stack spacing={10} pt={2}>
                 <Button
-                  onClick={handleRegister}
+                  onClick={handleLogin}
                   loadingText="Submitting"
                   size={"lg"}
                   _hover={"none"}

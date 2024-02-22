@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  USER_LOGIN_FAILED,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
   USER_REGISTER_FAILED,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -53,9 +56,9 @@ export const registerUser = (user, interpretResponse) => async (dispatch) => {
   }
 };
 
-export const loginUser = (user) => async (dispatch) => {
+export const loginUser = (user, interpretResponse) => async (dispatch) => {
   dispatch({
-    type: "USER_LOGIN_REQUEST",
+    type: USER_LOGIN_REQUEST,
   });
 
   try {
@@ -64,14 +67,36 @@ export const loginUser = (user) => async (dispatch) => {
       user
     );
 
+    console.log(res, "response from backend is");
+    console.log("status code: ", res);
+    if (res.status === 200 || res.status === 200) {
+      interpretResponse({
+        message: "Logged in Successfully",
+        response: "success",
+        res: res.data.user,
+        responseCode: 200,
+      });
+    } else {
+      interpretResponse({
+        message: "Error  During Login",
+        response: "error",
+        responseCode: res.status,
+      });
+    }
+
     dispatch({
-      type: "USER_LOGIN_SUCCESS",
-      payload: res.data,
+      type: USER_LOGIN_SUCCESS,
+      payload: res,
     });
   } catch (error) {
     dispatch({
-      type: "USER_LOGIN_FAILED",
-      payload: error,
+      type: USER_LOGIN_FAILED,
+      payload: res,
+    });
+    interpretResponse({
+      message: "Error  During Login",
+      response: "error",
+      responseCode: 400,
     });
   }
 };
