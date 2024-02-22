@@ -22,7 +22,10 @@ import { MoonIcon, SunIcon } from "lucide-react";
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const user = false;
+
+  const user = JSON.parse(localStorage.getItem("currentUser"))
+    ? JSON.parse(localStorage.getItem("currentUser"))
+    : null;
 
   return (
     <>
@@ -38,41 +41,52 @@ export default function Navbar() {
             <Text className="text-[#FA4F09]">ፈላጊ</Text>
           </Flex>
 
-          {user ? (
-            <Flex>
-              <Text>Link 1</Text>
-              <Text>Link 1</Text>
-              <Text>Link 1</Text>
-              <Text>Link 1</Text>
-            </Flex>
-          ) : null}
+          <Box className="hidden md:flex">
+            {user.userType === "Candidate" ? (
+              <Flex className="flex justify-between gap-8">
+                <Link to={"/"}>Home</Link>
+                <Link to={"/myApplication"}>My Application</Link>
+                <Link to={"/myProfile"}>Profile</Link>
+              </Flex>
+            ) : (
+              <Flex className="flex justify-between gap-8">
+                <Link to={"/createJob"}>Create Job</Link>
+                <Link to={"/myJob"}>Job View</Link>
+                <Link to={"/profile"}>Profile</Link>
+              </Flex>
+            )}
+          </Box>
 
           <Flex className="flex items-center gap-3">
-            <Box className="flex gap-2">
-              <Button
-                className="border border-black/30"
-                size={"sm"}
-                _hover={"none"}
-                bg={useColorModeValue("white", "")}
-                borderColor={useColorModeValue("black", "white")}
-              >
-                Login
-              </Button>
-              <Button
-                className="text-white dark:text-white"
-                size={"sm"}
-                _hover={"none"}
-                bg={useColorModeValue("#6A38C2", "#6A38C2")}
-                color={useColorModeValue("white", "white")}
-              >
-                <Link to={`/signup`}>Sign Up</Link>
-              </Button>
-            </Box>
+            {!user && (
+              <Box className="flex gap-2">
+                <Button
+                  className="border border-black/30"
+                  size={"sm"}
+                  _hover={"none"}
+                  bg={useColorModeValue("white", "")}
+                  borderColor={useColorModeValue("black", "white")}
+                >
+                  Login
+                </Button>
+                <Button
+                  className="text-white dark:text-white"
+                  size={"sm"}
+                  _hover={"none"}
+                  bg={useColorModeValue("#6A38C2", "#6A38C2")}
+                  color={useColorModeValue("white", "white")}
+                >
+                  <Link to={`/signup`}>Sign Up</Link>
+                </Button>
+              </Box>
+            )}
             <Box className="cursor-pointer" onClick={toggleColorMode}>
               {colorMode === "light" ? <MoonIcon /> : <SunIcon />}{" "}
             </Box>
 
-            {/* <Menu>
+            <Box className="md:hidden">
+              {" "}
+              <Menu>
                 <MenuButton
                   as={Button}
                   variant={"link"}
@@ -84,23 +98,34 @@ export default function Navbar() {
                   />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
-                  <br />
-                  <Center>
-                    <Avatar
-                      size={"sm"}
-                      src={"https://avatars.dicebear.com/api/male/username.svg"}
-                    />
-                  </Center>
-                  <br />
-                  <Center>
-                    {" "}
-                    <p>Username</p>
-                  </Center>
-                  <br /> <MenuDivider /> <MenuItem>Your Servers</MenuItem>
-                  <MenuItem>Account Settings</MenuItem>
-                  <MenuItem>Logout</MenuItem>
+                  {user.userType === "Candidate" ? (
+                    <Box>
+                      <MenuItem>
+                        <Link to={"/"}>Home</Link>
+                      </MenuItem>
+                      <MenuItem>
+                        <Link to={"/myApplication"}>My Application</Link>
+                      </MenuItem>
+                      <MenuItem>
+                        <Link to={"/myProfile"}>Profile</Link>
+                      </MenuItem>
+                    </Box>
+                  ) : (
+                    <Box>
+                      <MenuItem>
+                        <Link to={"/createJob"}>Create Job</Link>
+                      </MenuItem>
+                      <MenuItem>
+                        <Link to={"/myJob"}>Job View</Link>
+                      </MenuItem>
+                      <MenuItem>
+                        <Link to={"/profile"}>Profile</Link>
+                      </MenuItem>
+                    </Box>
+                  )}
                 </MenuList>
-              </Menu> */}
+              </Menu>
+            </Box>
           </Flex>
         </Flex>
       </Box>

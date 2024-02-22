@@ -63,11 +63,11 @@ export default function LoginPage() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
     const user = {
       email,
       password,
     };
+
     dispatch(loginUser(user, interpretResponse));
   };
 

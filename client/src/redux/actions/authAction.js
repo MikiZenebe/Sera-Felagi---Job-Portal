@@ -67,7 +67,7 @@ export const loginUser = (user, interpretResponse) => async (dispatch) => {
       user
     );
 
-    console.log(res, "response from backend is");
+    console.log(res.data.user, "response from backend is");
     console.log("status code: ", res);
     if (res.status === 200 || res.status === 200) {
       interpretResponse({
@@ -86,8 +86,10 @@ export const loginUser = (user, interpretResponse) => async (dispatch) => {
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
-      payload: res,
+      payload: res.data.user,
     });
+    //Save to the local storage
+    localStorage.setItem("currentUser", JSON.stringify(res.data.user));
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAILED,
