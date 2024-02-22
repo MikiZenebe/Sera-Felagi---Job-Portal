@@ -10,7 +10,11 @@ const rootReducer = combineReducers({
   registerState,
 });
 
-const initialState = {};
+const currentUser = localStorage.getItem("currentUser")
+  ? JSON.parse(localStorage.getItem("currentUser"))
+  : null;
+
+const initialState = { userLoginReducer: { currentUser } };
 const composedEnhancers = composeWithDevTools({});
 
 const store = legacy_createStore(

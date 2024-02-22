@@ -23,11 +23,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../redux/actions/authAction";
 import { useNavigate } from "react-router-dom";
 
-export default function SignupPage() {
+export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [itemSelect, setItemSelect] = useState("");
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -60,23 +57,17 @@ export default function SignupPage() {
     }
   };
 
-  const handleRegister = async (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      const user = {
-        name,
-        username,
-        email,
-        password,
-        userType: itemSelect,
-      };
-      dispatch(registerUser(user, interpretResponse));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
+
+    const user = {
+      name,
+      username,
+      email,
+      password,
+      userType: itemSelect,
+    };
+    dispatch(registerUser(user, interpretResponse));
   };
 
   return (
@@ -84,7 +75,7 @@ export default function SignupPage() {
       <Stack spacing={8} className="max-w-lg mx-auto py-12 px-6">
         <Stack className="items-center">
           <Heading className="text-4xl text-center flex gap-2">
-            <Text color={useColorModeValue("", "gray.400")}>Sign up for</Text>
+            <Text color={useColorModeValue("", "gray.400")}>Login to</Text>
             <Text
               color={useColorModeValue("", "white")}
               className="text-[#6A38C2]"
@@ -93,9 +84,6 @@ export default function SignupPage() {
             </Text>
             <Text className="text-[#FA4F09]">ፈላጊ</Text>
           </Heading>
-          <Flex className="text-3xl">
-            <Text>As a {itemSelect === "" ? "" : itemSelect}</Text>
-          </Flex>
         </Stack>
 
         <Box
@@ -103,33 +91,7 @@ export default function SignupPage() {
           className="shadow-2xl shadow-[#1e2b366e]/10 rounded-lg p-8 backdrop-blur-lg"
         >
           <Stack spacing={4}>
-            <HStack>
-              <Box>
-                <FormControl>
-                  <FormLabel>Full Name</FormLabel>
-                  <Input
-                    type="text"
-                    placeholder="Full Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </FormControl>
-              </Box>
-
-              <Box>
-                <FormControl>
-                  <FormLabel>Username</FormLabel>
-                  <Input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                </FormControl>
-              </Box>
-            </HStack>
-
-            <Box>
+            <Box className="flex flex-col gap-5">
               <FormControl>
                 <FormLabel>Email</FormLabel>
                 <Input
@@ -166,18 +128,6 @@ export default function SignupPage() {
                 </InputGroup>
               </FormControl>
 
-              <FormControl className="my-6">
-                <Select
-                  value={itemSelect}
-                  onChange={(e) => setItemSelect(e.target.value)}
-                  className="cursor-pointer"
-                >
-                  <option>Select Role</option>
-                  <option value="Recuiter">Recuiter</option>
-                  <option value="Candidate">Candidate</option>
-                </Select>
-              </FormControl>
-
               <Stack spacing={10} pt={2}>
                 <Button
                   onClick={handleRegister}
@@ -187,7 +137,7 @@ export default function SignupPage() {
                   bg={useColorModeValue("#6A38C2", "#6A38C2")}
                   color={useColorModeValue("white", "white")}
                 >
-                  Sign up
+                  Login
                 </Button>
               </Stack>
 
