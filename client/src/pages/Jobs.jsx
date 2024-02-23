@@ -1,5 +1,9 @@
-import React from "react";
+import { Filter } from "../components/index";
 
 export default function Jobs() {
-  return <div>Jobs</div>;
+  return (
+    <div>
+      <Filter />
+    </div>
+  );
 }
