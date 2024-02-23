@@ -27,7 +27,7 @@ export default function StepCards() {
         <Box
           bg={useColorModeValue("white", "#183242")}
           color={useColorModeValue("gray.500", "white")}
-          className="p-7 flex flex-col gap-2 max-w-[300px] card shadow-xl rounded-lg cursor-pointer"
+          className="p-7 flex flex-col gap-2 max-w-[300px] card rounded-lg cursor-pointer"
         >
           <Text className="bg-[#ffeae1] w-fit p-2 rounded-full">
             <UserCircle size={20} className="text-orange-500" />
@@ -47,7 +47,7 @@ export default function StepCards() {
         <Box
           bg={useColorModeValue("white", "#183242")}
           color={useColorModeValue("gray.500", "white")}
-          className="p-7 flex flex-col gap-2 max-w-[300px] card shadow-xl rounded-lg cursor-pointer"
+          className="p-7 flex flex-col gap-2 max-w-[300px] card rounded-lg cursor-pointer"
         >
           <Text className="bg-[#e4e1ff] w-fit p-2 rounded-full">
             <SearchIcon size={20} className="text-indigo-600" />
@@ -68,7 +68,7 @@ export default function StepCards() {
         <Box
           bg={useColorModeValue("white", "#183242")}
           color={useColorModeValue("gray.500", "white")}
-          className="p-7 flex flex-col gap-2 max-w-[300px] card shadow-xl rounded-lg cursor-pointer"
+          className="p-7 flex flex-col gap-2 max-w-[300px] card rounded-lg cursor-pointer"
         >
           <Text className="bg-[#e1fffa] w-fit p-2 rounded-full">
             <File size={20} className="text-[#3AC2BA]" />
@@ -89,7 +89,7 @@ export default function StepCards() {
         <Box
           bg={useColorModeValue("white", "#183242")}
           color={useColorModeValue("gray.500", "white")}
-          className="p-7 flex flex-col gap-2 max-w-[300px] card shadow-xl rounded-lg cursor-pointer"
+          className="p-7 flex flex-col gap-2 max-w-[300px] card  rounded-lg cursor-pointer"
         >
           <Text className="bg-[#fffae1] w-fit p-2 rounded-full">
             <UserCircle size={20} className="text-yellow-500" />

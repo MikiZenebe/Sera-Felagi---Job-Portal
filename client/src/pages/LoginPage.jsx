@@ -89,7 +89,7 @@ export default function LoginPage() {
 
         <Box
           bg={useColorModeValue("white", "#183242")}
-          className="shadow-2xl shadow-[#1e2b366e]/10 rounded-lg p-8 backdrop-blur-lg"
+          className="rounded-lg p-8 backdrop-blur-lg"
         >
           <Stack spacing={4}>
             <Box className="flex flex-col gap-5">
@@ -144,7 +144,10 @@ export default function LoginPage() {
 
               <Stack pt={6}>
                 <Text align={"center"}>
-                  Already a user? <Link color={"#1b70e0"}>Login</Link>
+                  Already a user?{" "}
+                  <Link className="font-bold text-[#6A38C2]" to={"/signup"}>
+                    Sign up
+                  </Link>
                 </Text>
               </Stack>
             </Box>

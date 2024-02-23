@@ -102,3 +102,7 @@ export const loginUser = (user, interpretResponse) => async (dispatch) => {
     });
   }
 };
+
+export const logoutUser = () => async (dispatch) => {
+  localStorage.removeItem("currentUser");
+};
