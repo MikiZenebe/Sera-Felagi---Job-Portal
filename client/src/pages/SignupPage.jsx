@@ -22,6 +22,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../redux/actions/authAction";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,7 +32,6 @@ export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const toast = useToast();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -39,23 +39,15 @@ export default function SignupPage() {
 
   const interpretResponse = (response) => {
     if (response.response === "success" && response.responseCode === 200) {
-      toast({
-        title: "Success",
-        status: "success",
-        description: response.message,
-        isClosable: true,
+      toast.success(response.message, {
         duration: 1500,
-        position: "top",
+        position: "top-center",
       });
       navigate(`/login`);
     } else {
-      toast({
-        title: "Error",
-        status: "error",
-        description: response.message,
-        isClosable: true,
+      toast.error(response.message, {
         duration: 1500,
-        position: "top",
+        position: "top-center",
       });
     }
   };

@@ -22,13 +22,14 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, registerUser } from "../redux/actions/authAction";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const toast = useToast();
+
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
@@ -40,23 +41,16 @@ export default function LoginPage() {
 
   const interpretResponse = (response) => {
     if (response.response === "success" && response.responseCode === 200) {
-      toast({
-        title: "Success",
-        status: "success",
-        description: response.message,
-        isClosable: true,
+      toast.success(response.message, {
         duration: 1500,
-        position: "top",
+        position: "top-center",
       });
+
       navigate(`/jobList`);
     } else {
-      toast({
-        title: "Error",
-        status: "error",
-        description: response.message,
-        isClosable: true,
+      toast.success(response.message, {
         duration: 1500,
-        position: "top",
+        position: "top-center",
       });
     }
   };

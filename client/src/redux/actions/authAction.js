@@ -93,7 +93,7 @@ export const loginUser = (user, interpretResponse) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAILED,
-      payload: res,
+      payload: res.status,
     });
     interpretResponse({
       message: "Error  During Login",

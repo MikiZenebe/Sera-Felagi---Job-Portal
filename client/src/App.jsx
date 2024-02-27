@@ -22,7 +22,7 @@ export default function App() {
         </Routes>
       </div>
 
-      <footer className="sticky  z-50  top-0">
+      <footer className="sticky z-50  top-0">
         <Footer />
       </footer>
     </>
