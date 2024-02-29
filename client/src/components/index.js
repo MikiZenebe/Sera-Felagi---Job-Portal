@@ -4,6 +4,7 @@ import StepCards from "./HomeComp/StepCards";
 import Offer from "./HomeComp/Offer";
 
 import Filter from "./JobsComp/Filter";
+import JobLists from "./JobsComp/JobLists";
 import Footer from "./Footer";
 
-export { Navbar, HeroSection, StepCards, Offer, Filter, Footer };
+export { Navbar, HeroSection, StepCards, Offer, Filter, JobLists, Footer };
