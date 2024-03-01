@@ -3,11 +3,11 @@ import { Github, Instagram, Twitter } from "lucide-react";
 
 export default function Footer() {
   return (
-    <>
+    <div className="pt-56">
       <Flex
         bg={useColorModeValue("#633da5ea", "#183242")}
         color={useColorModeValue("gray.500", "white")}
-        className="w-full h-[120px] flex justify-between items-center py-3 mt-[200px]"
+        className="w-full h-[120px] flex justify-between items-center py-3 "
       >
         <Box className="flex flex-col justify-center items-center mx-auto text-gray-300 gap-2">
           <Text>Developed By Mikiyas Zenebe</Text>
@@ -19,6 +19,6 @@ export default function Footer() {
           </Box>
         </Box>
       </Flex>
-    </>
+    </div>
   );
 }

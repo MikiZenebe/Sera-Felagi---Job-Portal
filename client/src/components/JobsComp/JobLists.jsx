@@ -1,6 +1,7 @@
 import { Avatar, Box, Button, Flex, useColorModeValue } from "@chakra-ui/react";
 import { HeartIcon } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function JobLists() {
   return (
@@ -33,33 +34,57 @@ export default function JobLists() {
 
       <Flex className="flex gap-3 flex-wrap my-4">
         <Box
-          bg={useColorModeValue("#F3F7FF", "#055ffa7b")}
-          color={useColorModeValue("#055DFA", "#cbd8ee")}
-          className=" p-2 rounded-lg font-semibold"
+          bg={useColorModeValue("#F3F7FF", "#6397ff67")}
+          color={useColorModeValue("#055DFA", "#5e99ff")}
+          className=" p-2 rounded-lg font-medium"
         >
           2 Positions
         </Box>
         <Box
-          bg={useColorModeValue("#FFF0EA", "#fa4d096e")}
-          color={useColorModeValue("#FA4F09", "#e0eafc")}
+          bg={useColorModeValue("#FFF0EA", "#fa4d0957")}
+          color={useColorModeValue("#FA4F09", "#FA4F09")}
           className=" p-2 rounded-lg font-semibold"
         >
           Full Time
         </Box>
         <Box
           bg={useColorModeValue("#d2f0db", "#34a85371")}
-          color={useColorModeValue("#34A853", "#e0eafc")}
+          color={useColorModeValue("#34A853", "#41c564")}
           className=" p-2 rounded-lg font-semibold"
         >
           2 Years
         </Box>
         <Box
           bg={useColorModeValue("#E1FFFD", "#3ac2b961")}
-          color={useColorModeValue("#3AC2BA", "#e0eafc")}
+          color={useColorModeValue("#3AC2BA", "#3AC2BA")}
           className=" p-2 rounded-lg font-semibold"
         >
           $ 95,000/Year
         </Box>
+      </Flex>
+
+      <Flex className="flex gap-3">
+        <Button
+          size={"sm"}
+          bg={useColorModeValue("#6A38C2", "#6A38C2")}
+          color={useColorModeValue("white", "white")}
+          _hover={useColorModeValue("", "#183242")}
+        >
+          Apply Now
+        </Button>
+
+        <Link to={`/job/:id`}>
+          <Button
+            size={"sm"}
+            bg={useColorModeValue("white", "transparent")}
+            border={"solid 1px"}
+            borderColor={useColorModeValue("black", "white")}
+            color={useColorModeValue("black", "white")}
+            _hover={useColorModeValue("", "")}
+          >
+            View Details
+          </Button>
+        </Link>
       </Flex>
     </Flex>
   );

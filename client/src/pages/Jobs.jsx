@@ -10,6 +10,7 @@ export default function Jobs() {
       </div>
 
       <div className="w-2/4 flex flex-col gap-2">
+        <JobLists /> <JobLists /> <JobLists /> <JobLists /> <JobLists />{" "}
         <JobLists />
       </div>
     </div>
