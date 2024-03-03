@@ -82,41 +82,6 @@ export default function Navbar() {
           </Box>
 
           <Flex className="flex items-center gap-3">
-            {!user ? (
-              <Box className="flex gap-2">
-                <Button
-                  className="border border-black/30"
-                  size={"sm"}
-                  _hover={"none"}
-                  bg={useColorModeValue("white", "")}
-                  borderColor={useColorModeValue("black", "white")}
-                >
-                  <Link to={`/login`}>Login</Link>
-                </Button>
-                <Button
-                  className="text-white dark:text-white"
-                  size={"sm"}
-                  _hover={"none"}
-                  bg={useColorModeValue("#6A38C2", "#6A38C2")}
-                  color={useColorModeValue("white", "white")}
-                >
-                  <Link to={`/signup`}>Sign Up</Link>
-                </Button>
-              </Box>
-            ) : (
-              <Box className="flex gap-2">
-                <Button
-                  onClick={logoutHandler}
-                  className="text-white dark:text-white"
-                  size={"sm"}
-                  _hover={"none"}
-                  bg={useColorModeValue("#c23838", "#c23838")}
-                  color={useColorModeValue("white", "white")}
-                >
-                  Logout
-                </Button>
-              </Box>
-            )}
             <Box className="cursor-pointer" onClick={toggleColorMode}>
               {colorMode === "light" ? <MoonIcon /> : <SunIcon />}{" "}
             </Box>
@@ -163,6 +128,42 @@ export default function Navbar() {
                     ) : null}
                   </MenuList>
                 </Menu>
+              </Box>
+            )}
+
+            {!user ? (
+              <Box className="flex gap-2">
+                <Button
+                  className="border border-black/30"
+                  size={"sm"}
+                  _hover={"none"}
+                  bg={useColorModeValue("white", "")}
+                  borderColor={useColorModeValue("black", "white")}
+                >
+                  <Link to={`/login`}>Login</Link>
+                </Button>
+                <Button
+                  className="text-white dark:text-white"
+                  size={"sm"}
+                  _hover={"none"}
+                  bg={useColorModeValue("#6A38C2", "#6A38C2")}
+                  color={useColorModeValue("white", "white")}
+                >
+                  <Link to={`/signup`}>Sign Up</Link>
+                </Button>
+              </Box>
+            ) : (
+              <Box className="flex gap-2">
+                <Button
+                  onClick={logoutHandler}
+                  className="text-white dark:text-white"
+                  size={"sm"}
+                  _hover={"none"}
+                  bg={useColorModeValue("#c23838", "#c23838")}
+                  color={useColorModeValue("white", "white")}
+                >
+                  Logout
+                </Button>
               </Box>
             )}
           </Flex>

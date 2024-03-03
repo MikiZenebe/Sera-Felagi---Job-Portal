@@ -6,6 +6,7 @@ import {
   LoginPage,
   Jobs,
   JobDetail,
+  CreateJob,
 } from "./pages/index";
 
 export default function App() {
@@ -28,6 +29,10 @@ export default function App() {
           <Route
             path="/job/:id"
             element={user ? <JobDetail /> : <HomePage />}
+          />
+          <Route
+            path="/createJob"
+            element={user ? <CreateJob /> : <HomePage />}
           />
         </Routes>
       </div>
