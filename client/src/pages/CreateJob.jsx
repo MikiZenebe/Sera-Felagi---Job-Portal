@@ -17,7 +17,7 @@ export default function CreateJob() {
         Create A New Job Post
       </Text>
 
-      <Flex className="flex flex-col gap-4 my-12 w-3/4 mx-auto">
+      <Flex className="flex flex-col gap-4 my-12 md:w-3/4 mx-auto">
         <HStack>
           <FormControl className="text-gray-400">
             <FormLabel>Job Title</FormLabel>
