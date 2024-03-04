@@ -48,7 +48,7 @@ export default function LoginPage() {
 
       navigate(`/jobList`);
     } else {
-      toast.success(response.message, {
+      toast.error(response.message, {
         duration: 1500,
         position: "top-center",
       });

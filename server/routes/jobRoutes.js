@@ -18,7 +18,7 @@ import { verifyToken } from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.post("/addJob", verifyToken, addJob);
+router.post("/addJob", addJob);
 router.post("/reqSkill", verifyToken, requiredSkill);
 router.post("/applyJob", verifyToken, applyJob);
 router.post("/addInfo", verifyToken, jobDetail);
