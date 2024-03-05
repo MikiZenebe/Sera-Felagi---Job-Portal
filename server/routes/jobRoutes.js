@@ -27,7 +27,7 @@ router.post("/userByjobId", verifyToken, userByJobId);
 router.post("/appliedJob", verifyToken, jobAppliById);
 router.post("/appReq", verifyToken, appRequest);
 
-router.get("/getAllJob", verifyToken, getAllJob);
+router.get("/getAllJob", getAllJob);
 router.get("/getJob/:id", verifyToken, getSingleJob);
 router.get("/jobDetail/:id", verifyToken, getJobDetail);
 router.get("/reqSkill/:id", verifyToken, getRequiredSkill);

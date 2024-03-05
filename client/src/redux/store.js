@@ -4,10 +4,12 @@ import { thunk } from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import { loginReducer, registerState } from "./reducers/authReducer";
+import { getAllJobReducer } from "./reducers/jobReducer";
 
 const rootReducer = combineReducers({
   loginReducer,
   registerState,
+  getAllJobReducer,
 });
 
 const currentUser = localStorage.getItem("currentUser")

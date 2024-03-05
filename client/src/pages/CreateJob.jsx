@@ -15,8 +15,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createNewJobAction } from "../redux/actions/jobActions";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateJob() {
+  const navigate = useNavigate();
   const [jobTitle, setJobTitle] = useState("");
   const [compName, setCompName] = useState("");
   const [jobDuration, setJobDuration] = useState("");
