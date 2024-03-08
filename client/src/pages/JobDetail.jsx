@@ -18,9 +18,10 @@ export default function JobDetail() {
 
   useEffect(() => {
     dispatch(getJobByIdAction(id));
-  });
+  }, [dispatch, id]);
 
   const { job } = useSelector((state) => state.getJobByIdReducer);
+  console.log(job);
 
   return (
     <Flex className="w-full gap-4 flex flex-col md:flex-row">
@@ -33,7 +34,7 @@ export default function JobDetail() {
             <Avatar size={"sm"} />
             <Flex className="flex flex-col">
               <Flex className="flex flex-col">
-                <h3 className="font-bold">Junior UI/UX Designer</h3>
+                <h3 className="font-bold">{job.jobTitle}</h3>
                 {/* <div className="flex gap-3 items-center">
                   <Text
                     color={useColorModeValue("#055DFA", "#5e99ff")}
@@ -62,7 +63,7 @@ export default function JobDetail() {
                 </div> */}
 
                 <Text className="rounded-lg font-medium text-gray-400">
-                  Arif Studios
+                  {job.compName}
                 </Text>
               </Flex>
             </Flex>
@@ -81,17 +82,7 @@ export default function JobDetail() {
         <Flex className="my-3 flex flex-col gap-4">
           <Flex className="flex flex-col gap-2">
             <Text className="font-bold">Job Description</Text>
-            <Text className="text-gray-400">
-              The Arif studios team has a vision to establish a trusted platform
-              that enables productive and healthy enterprise. The Arif studios
-              team has a vision to establish a trusted platform that enables
-              productive and healthy enterprise. The Arif studios team has a
-              vision to establish a trusted platform that enables productive and
-              healthy enterprise. The Arif studios team has a vision to
-              establish a trusted platform that enables productive and healthy
-              enterprise. The Arif studios team has a vision to establish a
-              trusted platform that enables productive and healthy enterprise.
-            </Text>
+            <Text className="text-gray-400">{job.jobDesc}</Text>
           </Flex>
 
           <Flex className="flex flex-col gap-2">
@@ -111,12 +102,12 @@ export default function JobDetail() {
           <Flex className="flex justify-between">
             <Flex className="flex flex-col items-center font-medium">
               <Text>Salary (USD)</Text>
-              <Text className="text-[#3AC2BA]">$50,000</Text>
+              <Text className="text-[#3AC2BA]">${job.salary}</Text>
             </Flex>
             <Flex className="flex flex-col items-center font-medium">
               {" "}
               <Text>Job Location</Text>
-              <Text className="text-gray-400">Addis Ababa</Text>
+              <Text className="text-gray-400">{job.location}</Text>
             </Flex>
           </Flex>
 
@@ -131,7 +122,7 @@ export default function JobDetail() {
                   <Text className="text-xs font-medium text-gray-400">
                     JOB POSTED:{" "}
                   </Text>
-                  <Text className="text-xs font-medium ">14 Jun, 2023</Text>
+                  <Text className="text-xs font-medium ">{job.updatedAt}</Text>
                 </Box>
               </Flex>
 

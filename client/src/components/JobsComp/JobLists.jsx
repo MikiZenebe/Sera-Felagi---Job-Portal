@@ -88,7 +88,7 @@ export default function JobLists({ jobs }) {
                   Apply Now
                 </Button>
 
-                <Link to={`/job/:id`}>
+                <Link to={`/job/${item._id}`}>
                   <Button
                     size={"sm"}
                     bg={useColorModeValue("white", "transparent")}
