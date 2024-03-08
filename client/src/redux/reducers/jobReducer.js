@@ -2,6 +2,9 @@ import {
   GET_JOBS_FAILED,
   GET_JOBS_REQUEST,
   GET_JOBS_SUCCESS,
+  GET_JOB_BY_ID,
+  GET_JOB_BY_ID_FAILED,
+  GET_JOB_BY_ID_SUCCESS,
   NEW_JOB_FAILED,
   NEW_JOB_REQUEST,
   NEW_JOB_SUCCESS,
@@ -52,6 +55,22 @@ export const getUserAllJobPostReducer = (state = { jobsPost: [] }, action) => {
         loading: false,
       };
     case USER_JOB_POST_FAILED:
+      return { error: action.payload, loading: false };
+    default:
+      return state;
+  }
+};
+
+export const getJobByIdReducer = (state = { job: [] }, action) => {
+  switch (action.type) {
+    case GET_JOB_BY_ID:
+      return { ...state, loading: true };
+    case GET_JOB_BY_ID_SUCCESS:
+      return {
+        job: action.payload,
+        loading: false,
+      };
+    case GET_JOB_BY_ID_FAILED:
       return { error: action.payload, loading: false };
     default:
       return state;

@@ -6,8 +6,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function JobLists({ jobs }) {
+  //Make three dots or read more
+  const truncateString = (str, num) => {
+    if (str?.length > num) {
+      return str.slice(0, num) + "...";
+    } else {
+      return str;
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 ">
       {jobs &&
         jobs.map((item) => (
           <>
@@ -33,7 +42,9 @@ export default function JobLists({ jobs }) {
               </Flex>
 
               <Flex>
-                <p className="text-gray-400">{item.jobDesc}</p>
+                <p className="text-gray-400">
+                  {truncateString(item.jobDesc, 150)}
+                </p>
               </Flex>
 
               <Flex className="flex gap-3 flex-wrap my-4">
@@ -42,7 +53,7 @@ export default function JobLists({ jobs }) {
                   color={useColorModeValue("#055DFA", "#5e99ff")}
                   className=" p-2 rounded-lg font-medium"
                 >
-                  2 Positions
+                  {item.location}
                 </Box>
                 <Box
                   bg={useColorModeValue("#FFF0EA", "#fa4d0957")}

@@ -27,17 +27,17 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/jobList" element={user ? <Jobs /> : <HomePage />} />
           <Route
-            path="/job/:id"
-            element={user ? <JobDetail /> : <HomePage />}
-          />
-          <Route
             path="/createJob"
             element={user ? <CreateJob /> : <HomePage />}
+          />
+          <Route
+            path="/job/:id"
+            element={user ? <JobDetail /> : <HomePage />}
           />
         </Routes>
       </div>
 
-      <footer className="sticky z-50 top-0">
+      <footer className="sticky z-50 top-60">
         <Footer />
       </footer>
     </>

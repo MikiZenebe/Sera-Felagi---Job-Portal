@@ -3,7 +3,7 @@ import { Github, Instagram, Twitter } from "lucide-react";
 
 export default function Footer() {
   return (
-    <div className="pt-56">
+    <div className="pt-56 ">
       <Flex
         bg={useColorModeValue("#633da5ea", "#183242")}
         color={useColorModeValue("gray.500", "white")}

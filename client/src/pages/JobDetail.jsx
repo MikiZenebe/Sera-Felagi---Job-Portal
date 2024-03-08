@@ -6,11 +6,22 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Blocks, Calendar, Clock } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { getJobByIdAction } from "../redux/actions/jobActions";
 
 export default function JobDetail() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getJobByIdAction(id));
+  });
+
+  const { job } = useSelector((state) => state.getJobByIdReducer);
+
   return (
     <Flex className="w-full gap-4 flex flex-col md:flex-row">
       <Flex

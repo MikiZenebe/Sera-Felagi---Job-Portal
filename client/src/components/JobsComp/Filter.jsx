@@ -6,7 +6,6 @@ import {
   AccordionPanel,
   Box,
   Button,
-  Divider,
   Flex,
   FormControl,
   FormLabel,
@@ -15,14 +14,23 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getAllJobAction } from "../../redux/actions/jobActions";
 
 export default function Filter() {
   const checkValue = [5000, 10000, 15000, 25000, 50000];
   const [searchKey, setSearchKey] = useState("");
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    if (e.target?.checked) {
+      dispatch(getAllJobAction("Salary", e.target.value));
+    }
+  };
 
   return (
     <Flex
-      className="flex flex-col max-w-[300px] p-6 rounded-lg"
+      className="flex flex-col max-w-[300px] p-6 rounded-lg "
       bg={useColorModeValue("white", "#183242")}
     >
       <Flex className="flex justify-between items-center">
@@ -54,7 +62,12 @@ export default function Filter() {
                 <>
                   <Box key={index} className="flex items-center gap-2">
                     <FormControl className="flex items-center gap-2">
-                      <input value={item} id={item.value} type="checkbox" />
+                      <input
+                        value={item}
+                        id={item.value}
+                        type="checkbox"
+                        onChange={(e) => handleChange(e)}
+                      />
                       <FormLabel
                         htmlFor="flexCheckDefault"
                         style={{ marginTop: "7px" }}
@@ -81,6 +94,8 @@ export default function Filter() {
             <AccordionPanel>
               <FormControl className="flex flex-col gap-2">
                 <Input
+                  value={searchKey}
+                  onChange={(e) => setSearchKey(e.target.value)}
                   size={"sm"}
                   type="text"
                   placeholder="location"
@@ -91,6 +106,9 @@ export default function Filter() {
                   size={"sm"}
                   type="button"
                   className="bg-orange-400 p-2 rounded-md items-end justify-end text-white"
+                  onClick={() =>
+                    dispatch(getAllJobAction("Location", searchKey))
+                  }
                 >
                   Search
                 </Button>

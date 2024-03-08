@@ -3,6 +3,9 @@ import {
   GET_JOBS_FAILED,
   GET_JOBS_REQUEST,
   GET_JOBS_SUCCESS,
+  GET_JOB_BY_ID,
+  GET_JOB_BY_ID_FAILED,
+  GET_JOB_BY_ID_SUCCESS,
   NEW_JOB_FAILED,
   NEW_JOB_REQUEST,
   NEW_JOB_SUCCESS,
@@ -93,3 +96,25 @@ export const getAllJobAction =
       });
     }
   };
+
+export const getJobByIdAction = (id) => async (dispatch) => {
+  dispatch({
+    type: GET_JOB_BY_ID,
+  });
+
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/job/getJob/${id}`
+    );
+
+    dispatch({
+      type: GET_JOB_BY_ID_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_JOB_BY_ID_FAILED,
+      payload: error,
+    });
+  }
+};
