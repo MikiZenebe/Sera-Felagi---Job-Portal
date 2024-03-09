@@ -1,11 +1,17 @@
 import axios from "axios";
 import {
+  ADD_JOB_SKILL_FAILED,
+  ADD_JOB_SKILL_REQUEST,
+  ADD_JOB_SKILL_SUCCESS,
   GET_JOBS_FAILED,
   GET_JOBS_REQUEST,
   GET_JOBS_SUCCESS,
   GET_JOB_BY_ID,
   GET_JOB_BY_ID_FAILED,
   GET_JOB_BY_ID_SUCCESS,
+  GET_JOB_SKILL_BY_ID,
+  GET_JOB_SKILL_BY_ID_FAILED,
+  GET_JOB_SKILL_BY_ID_SUCCESS,
   NEW_JOB_FAILED,
   NEW_JOB_REQUEST,
   NEW_JOB_SUCCESS,
@@ -114,6 +120,49 @@ export const getJobByIdAction = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_JOB_BY_ID_FAILED,
+      payload: error,
+    });
+  }
+};
+
+export const addSkillForJob = (post) => async (dispatch) => {
+  dispatch({
+    type: ADD_JOB_SKILL_REQUEST,
+  });
+
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/job/reqSkill`,
+      post
+    );
+    console.log(res);
+    dispatch({
+      type: ADD_JOB_SKILL_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ADD_JOB_SKILL_FAILED,
+      payload: error,
+    });
+  }
+};
+
+export const getJobSkillByIdAction = (id) => async (dispatch) => {
+  dispatch({
+    type: GET_JOB_SKILL_BY_ID,
+  });
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/job/reqSkill/${id}`
+    );
+    dispatch({
+      type: GET_JOB_SKILL_BY_ID_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_JOB_SKILL_BY_ID_FAILED,
       payload: error,
     });
   }

@@ -4,13 +4,18 @@ import { thunk } from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import { loginReducer, registerState } from "./reducers/authReducer";
-import { getAllJobReducer, getJobByIdReducer } from "./reducers/jobReducer";
+import {
+  getAllJobReducer,
+  getJobByIdReducer,
+  getJobSkillByIdReducer,
+} from "./reducers/jobReducer";
 
 const rootReducer = combineReducers({
   loginReducer,
   registerState,
   getAllJobReducer,
   getJobByIdReducer,
+  getJobSkillByIdReducer,
 });
 
 const currentUser = localStorage.getItem("currentUser")

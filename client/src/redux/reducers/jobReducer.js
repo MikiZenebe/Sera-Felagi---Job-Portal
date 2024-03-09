@@ -5,6 +5,9 @@ import {
   GET_JOB_BY_ID,
   GET_JOB_BY_ID_FAILED,
   GET_JOB_BY_ID_SUCCESS,
+  GET_JOB_SKILL_BY_ID,
+  GET_JOB_SKILL_BY_ID_FAILED,
+  GET_JOB_SKILL_BY_ID_SUCCESS,
   NEW_JOB_FAILED,
   NEW_JOB_REQUEST,
   NEW_JOB_SUCCESS,
@@ -71,6 +74,22 @@ export const getJobByIdReducer = (state = { job: [] }, action) => {
         loading: false,
       };
     case GET_JOB_BY_ID_FAILED:
+      return { error: action.payload, loading: false };
+    default:
+      return state;
+  }
+};
+
+export const getJobSkillByIdReducer = (state = { jobskill: [] }, action) => {
+  switch (action.type) {
+    case GET_JOB_SKILL_BY_ID:
+      return { ...state, loading: true };
+    case GET_JOB_SKILL_BY_ID_SUCCESS:
+      return {
+        jobskill: action.payload,
+        loading: false,
+      };
+    case GET_JOB_SKILL_BY_ID_FAILED:
       return { error: action.payload, loading: false };
     default:
       return state;
