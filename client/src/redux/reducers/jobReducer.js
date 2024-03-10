@@ -1,4 +1,7 @@
 import {
+  ADD_JOB_SKILL_FAILED,
+  ADD_JOB_SKILL_REQUEST,
+  ADD_JOB_SKILL_SUCCESS,
   GET_JOBS_FAILED,
   GET_JOBS_REQUEST,
   GET_JOBS_SUCCESS,
@@ -11,6 +14,9 @@ import {
   NEW_JOB_FAILED,
   NEW_JOB_REQUEST,
   NEW_JOB_SUCCESS,
+  USER_BY_JOB_ID_FAILED,
+  USER_BY_JOB_ID_REQUEST,
+  USER_BY_JOB_ID_SUCCESS,
   USER_JOB_POST_FAILED,
   USER_JOB_POST_REQUEST,
   USER_JOB_POST_SUCCESS,
@@ -80,6 +86,22 @@ export const getJobByIdReducer = (state = { job: [] }, action) => {
   }
 };
 
+export const newJobSkillReducer = (state = { newSkill: [] }, action) => {
+  switch (action.type) {
+    case ADD_JOB_SKILL_REQUEST:
+      return { ...state, loading: false };
+    case ADD_JOB_SKILL_SUCCESS:
+      return {
+        newSkill: action.payload,
+        loading: false,
+      };
+    case ADD_JOB_SKILL_FAILED:
+      return { error: action.payload, loading: false };
+    default:
+      return state;
+  }
+};
+
 export const getJobSkillByIdReducer = (state = { jobskill: [] }, action) => {
   switch (action.type) {
     case GET_JOB_SKILL_BY_ID:
@@ -90,6 +112,22 @@ export const getJobSkillByIdReducer = (state = { jobskill: [] }, action) => {
         loading: false,
       };
     case GET_JOB_SKILL_BY_ID_FAILED:
+      return { error: action.payload, loading: false };
+    default:
+      return state;
+  }
+};
+
+export const getUserbyjobIdReducer = (state = { appliList: [] }, action) => {
+  switch (action.type) {
+    case USER_BY_JOB_ID_REQUEST:
+      return { ...state, loading: true };
+    case USER_BY_JOB_ID_SUCCESS:
+      return {
+        appliList: action.payload,
+        loading: false,
+      };
+    case USER_BY_JOB_ID_FAILED:
       return { error: action.payload, loading: false };
     default:
       return state;

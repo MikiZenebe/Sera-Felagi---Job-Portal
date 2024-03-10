@@ -15,6 +15,9 @@ import {
   NEW_JOB_FAILED,
   NEW_JOB_REQUEST,
   NEW_JOB_SUCCESS,
+  USER_BY_JOB_ID_FAILED,
+  USER_BY_JOB_ID_REQUEST,
+  USER_BY_JOB_ID_SUCCESS,
 } from "../types";
 
 export const createNewJobAction =
@@ -156,6 +159,7 @@ export const getJobSkillByIdAction = (id) => async (dispatch) => {
     const res = await axios.get(
       `${process.env.REACT_APP_API_URL}/job/reqSkill/${id}`
     );
+    console.log(res);
     dispatch({
       type: GET_JOB_SKILL_BY_ID_SUCCESS,
       payload: res.data,
@@ -163,6 +167,31 @@ export const getJobSkillByIdAction = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_JOB_SKILL_BY_ID_FAILED,
+      payload: error,
+    });
+  }
+};
+
+export const getAllUserByJobIdAction = (id) => async (dispatch) => {
+  dispatch({
+    type: USER_BY_JOB_ID_REQUEST,
+  });
+
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/job/userByjobId`,
+      {
+        id,
+      }
+    );
+
+    dispatch({
+      type: USER_BY_JOB_ID_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_BY_JOB_ID_FAILED,
       payload: error,
     });
   }

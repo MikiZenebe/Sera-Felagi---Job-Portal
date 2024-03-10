@@ -23,7 +23,7 @@ router.post("/reqSkill", requiredSkill);
 router.post("/applyJob", verifyToken, applyJob);
 router.post("/addInfo", verifyToken, jobDetail);
 router.post("/myJobPost", verifyToken, myJobPost);
-router.post("/userByjobId", verifyToken, userByJobId);
+router.post("/userByjobId", userByJobId);
 router.post("/appliedJob", verifyToken, jobAppliById);
 router.post("/appReq", verifyToken, appRequest);
 

@@ -21,6 +21,7 @@ import { Blocks, Calendar, Clock } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addSkillForJob,
+  getAllUserByJobIdAction,
   getJobByIdAction,
   getJobSkillByIdAction,
 } from "../redux/actions/jobActions";
@@ -35,15 +36,17 @@ export default function JobDetail() {
   useEffect(() => {
     dispatch(getJobByIdAction(id));
     dispatch(getJobSkillByIdAction(id));
+    dispatch(getAllUserByJobIdAction(id));
   }, [dispatch, id]);
 
   const userId = JSON.parse(localStorage.getItem("currentUser"))._id;
 
   const { job } = useSelector((state) => state.getJobByIdReducer);
   const { jobskill } = useSelector((state) => state.getJobSkillByIdReducer);
+  const { appliList } = useSelector((state) => state.getUserbyjobIdReducer);
   console.log(jobskill);
 
-  const onSubmit = (e) => {
+  const addSkill = (e) => {
     e.preventDefault();
     let data = {
       jobId: id,
@@ -92,7 +95,7 @@ export default function JobDetail() {
 
           <Flex className="flex flex-col gap-2">
             <Text className="font-bold">Essential Skills</Text>
-            {jobskill?.map((item, i) => (
+            {jobskill.map((item, i) => (
               <Text key={i} className="text-gray-400">
                 {item.reqSkill}
               </Text>
@@ -166,10 +169,9 @@ export default function JobDetail() {
         </Flex>
       </Flex>
 
-      <form onSubmit={onSubmit}>
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <form onSubmit={addSkill}>
           <ModalContent width={"auto"} height={"200px"}>
             <ModalHeader>Add Skill</ModalHeader>
             <ModalCloseButton />
@@ -193,8 +195,8 @@ export default function JobDetail() {
               </Button>
             </ModalFooter>
           </ModalContent>
-        </Modal>
-      </form>
+        </form>
+      </Modal>
     </Flex>
   );
 }
