@@ -20,17 +20,17 @@ const router = express.Router();
 
 router.post("/addJob", addJob);
 router.post("/reqSkill", requiredSkill);
-router.post("/applyJob", verifyToken, applyJob);
-router.post("/addInfo", verifyToken, jobDetail);
-router.post("/myJobPost", verifyToken, myJobPost);
+router.post("/applyJob", applyJob);
+router.post("/addInfo", jobDetail);
+router.post("/myJobPost", myJobPost);
 router.post("/userByjobId", userByJobId);
-router.post("/appliedJob", verifyToken, jobAppliById);
-router.post("/appReq", verifyToken, appRequest);
+router.post("/appliedJob", jobAppliById);
+router.post("/appReq", appRequest);
 
 router.get("/getAllJob", getAllJob);
 router.get("/getJob/:id", getSingleJob);
-router.get("/jobDetail/:id", verifyToken, getJobDetail);
-router.get("/reqSkill/:id", getRequiredSkill);
-router.get("/application/:id", verifyToken, applicationById);
+router.get("/jobDetail/:id", getJobDetail);
+router.get("/getReqSkill/:id", getRequiredSkill);
+router.get("/application/:id", applicationById);
 
 export default router;

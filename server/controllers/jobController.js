@@ -170,10 +170,8 @@ export const getJobDetail = async (req, res) => {
   }
 };
 export const getRequiredSkill = async (req, res) => {
-  const { jobId } = req.body;
-
   try {
-    const getRequired = await ReqSkill.find({ jobId });
+    const getRequired = await ReqSkill.find({ jobId: req.params.id });
     if (!getRequired) {
       return res.status(404).json({ message: "Required skill not found" });
     }

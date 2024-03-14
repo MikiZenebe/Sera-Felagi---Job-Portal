@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {
   Avatar,
   Box,
@@ -37,14 +38,28 @@ export default function JobDetail() {
     dispatch(getJobByIdAction(id));
     dispatch(getJobSkillByIdAction(id));
     dispatch(getAllUserByJobIdAction(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, skill_name]);
 
   const userId = JSON.parse(localStorage.getItem("currentUser"))._id;
 
   const { job } = useSelector((state) => state.getJobByIdReducer);
   const { jobskill } = useSelector((state) => state.getJobSkillByIdReducer);
   const { appliList } = useSelector((state) => state.getUserbyjobIdReducer);
-  console.log(jobskill);
+
+  const interpretResponse = (response) => {
+    if (response.response === "success" && response.responseCode === 200) {
+      toast.success(response.message, {
+        duration: 1500,
+        position: "top-center",
+      });
+      navigate(`/jobList`);
+    } else {
+      toast.error(response.message, {
+        duration: 1500,
+        position: "top-center",
+      });
+    }
+  };
 
   const addSkill = (e) => {
     e.preventDefault();
@@ -53,7 +68,7 @@ export default function JobDetail() {
       reqSkill: skill_name,
     };
 
-    dispatch(addSkillForJob(data));
+    dispatch(addSkillForJob(data, interpretResponse));
     setSkillName("");
   };
 
@@ -93,17 +108,38 @@ export default function JobDetail() {
             <Text className="text-gray-400">{job.jobDesc}</Text>
           </Flex>
 
-          <Flex className="flex flex-col gap-2">
-            <Text className="font-bold">Essential Skills</Text>
-            {jobskill.map((item, i) => (
-              <Text key={i} className="text-gray-400">
-                {item.reqSkill}
-              </Text>
-            ))}
+          <Flex className="flex flex-col gap-3">
+            <Flex className="flex items-center gap-2">
+              <Text className="font-bold">Essential Skills</Text>
+              {job?.userId === userId && (
+                <Button
+                  bg={useColorModeValue("#6A38C2", "#6A38C2")}
+                  color={useColorModeValue("white", "white")}
+                  _hover={useColorModeValue("", "#183242")}
+                  className="px-2 "
+                  size={"sm"}
+                  onClick={onOpen}
+                >
+                  Add Skill
+                </Button>
+              )}
+            </Flex>
 
-            {job?.userId === userId && (
-              <Button onClick={onOpen}>Add Skill</Button>
-            )}
+            <Flex className="flex gap-1">
+              {jobskill?.map((item, i) => (
+                <>
+                  {" "}
+                  <Text
+                    key={i}
+                    color={useColorModeValue("#57AB57", "#6add6a")}
+                    className="font-semibold"
+                  >
+                    {item.reqSkill}
+                  </Text>
+                  <Box className="bg-gray-400 w-[1px] rounded-full h-auto"></Box>
+                </>
+              ))}
+            </Flex>
           </Flex>
         </Flex>
       </Flex>
@@ -171,11 +207,11 @@ export default function JobDetail() {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <form onSubmit={addSkill}>
-          <ModalContent width={"auto"} height={"200px"}>
-            <ModalHeader>Add Skill</ModalHeader>
-            <ModalCloseButton />
 
+        <ModalContent width={"auto"} height={"200px"}>
+          <ModalHeader>Add Skill</ModalHeader>
+          <ModalCloseButton />
+          <form onSubmit={addSkill}>
             <ModalBody>
               <Input
                 type="text"
@@ -194,8 +230,8 @@ export default function JobDetail() {
                 Add
               </Button>
             </ModalFooter>
-          </ModalContent>
-        </form>
+          </form>
+        </ModalContent>
       </Modal>
     </Flex>
   );

@@ -128,7 +128,7 @@ export const getJobByIdAction = (id) => async (dispatch) => {
   }
 };
 
-export const addSkillForJob = (post) => async (dispatch) => {
+export const addSkillForJob = (post, interpretResponse) => async (dispatch) => {
   dispatch({
     type: ADD_JOB_SKILL_REQUEST,
   });
@@ -138,7 +138,22 @@ export const addSkillForJob = (post) => async (dispatch) => {
       `${process.env.REACT_APP_API_URL}/job/reqSkill`,
       post
     );
-    console.log(res);
+
+    if (res.status === 200 || res.status === 200) {
+      interpretResponse({
+        message: "Skill Added Successfully",
+        response: "success",
+        res: res.data,
+        responseCode: 200,
+      });
+    } else {
+      interpretResponse({
+        message: "Error While Adding Skill",
+        response: "error",
+        responseCode: 400,
+      });
+    }
+
     dispatch({
       type: ADD_JOB_SKILL_SUCCESS,
       payload: res.data,
@@ -157,9 +172,9 @@ export const getJobSkillByIdAction = (id) => async (dispatch) => {
   });
   try {
     const res = await axios.get(
-      `${process.env.REACT_APP_API_URL}/job/reqSkill/${id}`
+      `${process.env.REACT_APP_API_URL}/job/getReqSkill/${id}`
     );
-    console.log(res);
+
     dispatch({
       type: GET_JOB_SKILL_BY_ID_SUCCESS,
       payload: res.data,
