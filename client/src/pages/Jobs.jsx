@@ -11,17 +11,16 @@ export default function Jobs() {
   }, [dispatch]);
 
   const { jobs } = useSelector((state) => state.getAllJobReducer);
-  console.log(jobs);
 
   return (
-    <div className="h-auto w-full flex gap-5">
-      <div className="w-1/4">
-        <div className="w-1/4" style={{ position: "fixed" }}>
+    <div className="h-auto w-full flex flex-col md:flex-row gap-8">
+      <div className="md:w-2/5 w-2/4 mx-auto">
+        <div className="mx-auto md:w-3/4 md:fixed">
           <Filter />
         </div>
       </div>
 
-      <div className="w-2/4 flex flex-col gap-2">
+      <div className="w-full flex flex-col gap-2">
         <JobLists jobs={jobs} />
       </div>
     </div>
