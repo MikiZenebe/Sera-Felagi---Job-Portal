@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-"use client";
+
 import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
@@ -106,6 +106,9 @@ export default function Navbar() {
                           <Link to={"/"}>Home</Link>
                         </MenuItem>
                         <MenuItem>
+                          <Link to={"/jobList"}>Find Job</Link>
+                        </MenuItem>
+                        <MenuItem>
                           <Link to={"/myApplication"}>My Application</Link>
                         </MenuItem>
                         <MenuItem>
@@ -115,6 +118,9 @@ export default function Navbar() {
                     ) : null}
                     {userType === "Recuiter" ? (
                       <Box>
+                        <MenuItem>
+                          <Link to={"/jobList"}>Find Job</Link>
+                        </MenuItem>
                         <MenuItem>
                           <Link to={"/createJob"}>Create Job</Link>
                         </MenuItem>

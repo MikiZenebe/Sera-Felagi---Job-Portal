@@ -17,8 +17,8 @@ import {
   Input,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Blocks, Calendar, Clock } from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Blocks, Calendar, Clock, TrashIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addSkillForJob,
@@ -27,9 +27,12 @@ import {
   getJobSkillByIdAction,
 } from "../redux/actions/jobActions";
 import moment from "moment";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function JobDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [skill_name, setSkillName] = useState("");
@@ -52,9 +55,8 @@ export default function JobDetail() {
         duration: 1500,
         position: "top-center",
       });
-      navigate(`/jobList`);
     } else {
-      toast.error(response.message, {
+      toast.error("Error While Deleted", {
         duration: 1500,
         position: "top-center",
       });
@@ -70,6 +72,22 @@ export default function JobDetail() {
 
     dispatch(addSkillForJob(data, interpretResponse));
     setSkillName("");
+  };
+
+  const deletePost = async () => {
+    try {
+      const res = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/job/delete/${id}`
+      );
+
+      toast.success("Deleted", {
+        duration: 1500,
+        position: "top-center",
+      });
+      navigate(`/jobList`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -92,14 +110,27 @@ export default function JobDetail() {
             </Flex>
           </Flex>
 
-          <Button
-            size={"sm"}
-            bg={useColorModeValue("#6A38C2", "#6A38C2")}
-            color={useColorModeValue("white", "white")}
-            _hover={useColorModeValue("", "#183242")}
-          >
-            Apply Now
-          </Button>
+          <Flex className="flex items-center gap-2">
+            <Button
+              size={"sm"}
+              bg={useColorModeValue("#6A38C2", "#6A38C2")}
+              color={useColorModeValue("white", "white")}
+              _hover={useColorModeValue("", "#183242")}
+            >
+              Apply Now
+            </Button>
+
+            {userId === job?.userId && (
+              <Box
+                className="hover:cursor-pointer"
+                color={useColorModeValue("red", "red")}
+                _hover={useColorModeValue("#e57b7b", "#e57b7b")}
+                onClick={() => deletePost(job?._id)}
+              >
+                <TrashIcon size={20} />
+              </Box>
+            )}
+          </Flex>
         </Flex>
 
         <Flex className="my-3 flex flex-col gap-4">

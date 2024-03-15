@@ -38,7 +38,9 @@ export const addJob = async (req, res) => {
 };
 export const getAllJob = async (req, res) => {
   try {
-    const jobs = await Job.find({});
+    const jobs = await Job.find({}).sort({
+      createdAt: -1,
+    });
     res.status(200).json(jobs);
   } catch (error) {
     return res.status(400).json({ message: error });
@@ -55,6 +57,21 @@ export const getSingleJob = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
     console.log("Error in getting job: ", error.message);
+  }
+};
+export const deleteJob = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await Job.findByIdAndDelete(id);
+
+    res.status(200).json({
+      success: true,
+      message: "Deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({ message: error.message });
   }
 };
 export const applyJob = async (req, res) => {

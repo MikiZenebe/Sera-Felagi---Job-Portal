@@ -13,6 +13,7 @@ import {
   getRequiredSkill,
   applicationById,
   appRequest,
+  deleteJob,
 } from "../controllers/jobController.js";
 import { verifyToken } from "../middlewares/auth.js";
 
@@ -32,5 +33,6 @@ router.get("/getJob/:id", getSingleJob);
 router.get("/jobDetail/:id", getJobDetail);
 router.get("/getReqSkill/:id", getRequiredSkill);
 router.get("/application/:id", applicationById);
+router.delete("/delete/:id", deleteJob);
 
 export default router;
