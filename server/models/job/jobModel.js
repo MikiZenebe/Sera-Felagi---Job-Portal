@@ -7,6 +7,7 @@ const JobSchema = mongoose.Schema(
     compName: { type: String, required: true },
     jobDuration: { type: String, required: true },
     jobDesc: { type: String, required: true },
+    jobLevel: { type: String, required: true },
     salary: { type: String, required: true },
     jobType: { type: String, required: true },
     WorkFrom: { type: String, required: true },

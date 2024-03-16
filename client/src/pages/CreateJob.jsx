@@ -27,6 +27,7 @@ export default function CreateJob() {
   const [WorkFrom, setWorkFrom] = useState("office");
   const [location, setLocation] = useState("");
   const [jobDesc, setJobDesc] = useState("");
+  const [jobLevel, setJobLevel] = useState("");
 
   const dispatch = useDispatch();
 
@@ -57,6 +58,7 @@ export default function CreateJob() {
         WorkFrom,
         location,
         jobDesc,
+        jobLevel,
         userId: JSON.parse(localStorage.getItem("currentUser")),
       };
       dispatch(createNewJobAction(data, interpretResponse));
@@ -152,14 +154,25 @@ export default function CreateJob() {
           </FormControl>
         </HStack>
 
-        <FormControl className="text-gray-400">
-          <FormLabel>Location</FormLabel>
-          <Input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
-        </FormControl>
+        <HStack>
+          <FormControl className="text-gray-400">
+            <FormLabel>Location</FormLabel>
+            <Input
+              type="text"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </FormControl>
+
+          <FormControl className="text-gray-400">
+            <FormLabel>Job Level</FormLabel>
+            <Input
+              type="text"
+              value={jobLevel}
+              onChange={(e) => setJobLevel(e.target.value)}
+            />
+          </FormControl>
+        </HStack>
 
         <Stack spacing={10} pt={2}>
           <Button

@@ -24,6 +24,18 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    profilePic: {
+      type: String,
+      default: "",
+    },
+    aboutComp: {
+      type: String,
+      default: "",
+    },
+    benefits: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );

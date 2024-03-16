@@ -228,7 +228,7 @@ export default function JobDetail() {
                   <Text className="text-xs font-medium text-gray-400">
                     JOB LEVEL:
                   </Text>
-                  <Text className="text-xs font-medium ">Junior</Text>
+                  <Text className="text-xs font-medium ">{job.jobLevel}</Text>
                 </Box>
               </Flex>
             </Flex>

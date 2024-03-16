@@ -1,7 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Avatar, Box, Button, Flex, useColorModeValue } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { HeartIcon } from "lucide-react";
+import moment from "moment";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -36,9 +44,9 @@ export default function JobLists({ jobs }) {
                   </Flex>
                 </Flex>
 
-                <Button size={"sm"}>
-                  <HeartIcon size={20} />
-                </Button>
+                <p className="text-gray-400 text-sm font-medium">
+                  {moment(item.updatedAt).fromNow()}
+                </p>
               </Flex>
 
               <Flex>
@@ -47,32 +55,32 @@ export default function JobLists({ jobs }) {
                 </p>
               </Flex>
 
-              <Flex className="flex gap-3 flex-wrap my-4">
+              <Flex className="flex gap-2 flex-wrap my-1">
                 <Box
                   bg={useColorModeValue("#F3F7FF", "#6397ff67")}
                   color={useColorModeValue("#055DFA", "#5e99ff")}
-                  className=" p-2 rounded-lg font-medium"
+                  className="my-2 py-1 px-3 text-sm rounded-lg font-medium"
                 >
                   {item.location}
                 </Box>
                 <Box
                   bg={useColorModeValue("#FFF0EA", "#fa4d0957")}
                   color={useColorModeValue("#FA4F09", "#FA4F09")}
-                  className=" p-2 rounded-lg font-semibold"
+                  className="my-2 py-1 px-3 text-sm rounded-lg font-medium"
                 >
                   {item.jobType}
                 </Box>
                 <Box
                   bg={useColorModeValue("#d2f0db", "#34a85371")}
                   color={useColorModeValue("#34A853", "#41c564")}
-                  className=" p-2 rounded-lg font-semibold"
+                  className="my-2 py-1 px-3 text-sm rounded-lg font-medium"
                 >
                   {item.jobDuration}
                 </Box>
                 <Box
                   bg={useColorModeValue("#E1FFFD", "#3ac2b961")}
                   color={useColorModeValue("#3AC2BA", "#3AC2BA")}
-                  className=" p-2 rounded-lg font-semibold"
+                  className="my-2 py-1 px-3 text-sm rounded-lg font-medium"
                 >
                   ${item.salary}
                 </Box>

@@ -15,6 +15,7 @@ export const addJob = async (req, res) => {
       WorkFrom,
       location,
       jobDesc,
+      jobLevel,
     } = req.body;
 
     const newJob = await Job.create({
@@ -27,6 +28,7 @@ export const addJob = async (req, res) => {
       WorkFrom,
       location,
       jobDesc,
+      jobLevel,
     });
 
     await newJob.save();
