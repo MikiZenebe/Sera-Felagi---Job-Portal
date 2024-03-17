@@ -68,7 +68,7 @@ export default function Navbar() {
                 </Link>
                 <Link to={"/jobList"}>Find Job</Link>
                 <Link to={"/myApplication"}>My Application</Link>
-                <Link to={"/myProfile"}>Profile</Link>
+                <Link to={"/updateProfile"}>Update Profile</Link>
               </Flex>
             ) : null}
             {userType === "Recuiter" ? (
@@ -76,7 +76,7 @@ export default function Navbar() {
                 <Link to={"/jobList"}>Find Job</Link>
                 <Link to={"/createJob"}>Create Job</Link>
                 <Link to={"/myJob"}>Job View</Link>
-                <Link to={"/profile"}>Profile</Link>
+                <Link to={"/updateProfile"}>Update Profile</Link>
               </Flex>
             ) : null}
           </Box>
@@ -112,7 +112,7 @@ export default function Navbar() {
                           <Link to={"/myApplication"}>My Application</Link>
                         </MenuItem>
                         <MenuItem>
-                          <Link to={"/myProfile"}>Profile</Link>
+                          <Link to={"/updateProfile"}>Update Profile</Link>
                         </MenuItem>
                       </Box>
                     ) : null}
@@ -128,7 +128,7 @@ export default function Navbar() {
                           <Link to={"/myJob"}>Job View</Link>
                         </MenuItem>
                         <MenuItem>
-                          <Link to={"/profile"}>Profile</Link>
+                          <Link to={"/updateProfile"}>Update Profile</Link>
                         </MenuItem>
                       </Box>
                     ) : null}
