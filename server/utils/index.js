@@ -13,8 +13,16 @@ export const compareString = async (userPassword, password) => {
 };
 
 //JSON Web-Token
-export function createJWT(id) {
-  return JWT.sign({ userId: id }, process.env.JWT_SECRET, {
+export function createJWT(userId, res) {
+  const token = JWT.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "15d",
   });
+
+  res?.cookie("jwt", token, {
+    httpOnly: true, //more secure
+    maxAge: 15 * 24 * 60 * 60 * 1000, //15 days
+    sameSite: "strict", //CSRF
+  });
+
+  return token;
 }
