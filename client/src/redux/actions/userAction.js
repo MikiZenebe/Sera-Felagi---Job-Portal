@@ -12,7 +12,9 @@ import {
   USER_PROFILE_FAILED,
   USER_PROFILE_REQUEST,
   USER_PROFILE_SUCCESS,
-  USER_PROJECTS_REQUEST,
+  USER_SKILLS_FAILED,
+  USER_SKILLS_REQUEST,
+  USER_SKILLS_SUCCESS,
 } from "../types";
 
 export const getAlljobPostofUser = (id) => async (dispatch) => {
@@ -103,6 +105,29 @@ export const userPortfolio = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_PORTFOLIO_FAILED,
+      payload: error,
+    });
+  }
+};
+
+export const userSkills = (id) => async (dispatch) => {
+  dispatch({
+    type: USER_SKILLS_REQUEST,
+  });
+
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/applicant/allSkills`,
+      { id }
+    );
+
+    dispatch({
+      type: USER_SKILLS_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_SKILLS_FAILED,
       payload: error,
     });
   }
