@@ -46,7 +46,7 @@ export default function LoginPage() {
         position: "top-center",
       });
 
-      navigate(`/jobList`);
+      window.location.replace("/jobList");
     } else {
       toast.error(response.message, {
         duration: 1500,

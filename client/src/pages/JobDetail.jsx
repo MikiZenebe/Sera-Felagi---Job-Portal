@@ -71,6 +71,8 @@ export default function JobDetail() {
     };
 
     dispatch(addSkillForJob(data, interpretResponse));
+    dispatch(getJobByIdAction(id));
+    navigate(`/job/${id}`);
     setSkillName("");
   };
 

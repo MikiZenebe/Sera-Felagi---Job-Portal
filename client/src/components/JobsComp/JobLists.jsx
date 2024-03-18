@@ -8,7 +8,6 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { HeartIcon } from "lucide-react";
 import moment from "moment";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -22,6 +21,10 @@ export default function JobLists({ jobs }) {
       return str;
     }
   };
+
+  const user = JSON.parse(localStorage.getItem("currentUser"))
+    ? JSON.parse(localStorage.getItem("currentUser"))
+    : null;
 
   return (
     <div className="flex flex-col gap-4 ">
