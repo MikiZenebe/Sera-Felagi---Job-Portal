@@ -11,7 +11,7 @@ export default function MyJobList() {
     if (id) {
       dispatch(getAlljobPostofUser(id));
     }
-  }, []);
+  }, [dispatch, id]);
 
   const { jobsPost } = useSelector((state) => state.getUserAllJobPostReducer);
 

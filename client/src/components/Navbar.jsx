@@ -68,6 +68,7 @@ export default function Navbar() {
                 </Link>
                 <Link to={"/jobList"}>Find Job</Link>
                 <Link to={"/myApplication"}>My Application</Link>
+                <Link to={"/resume/:id"}>Resume</Link>
                 <Link to={"/updateProfile"}>Update Profile</Link>
               </Flex>
             ) : null}
@@ -110,6 +111,9 @@ export default function Navbar() {
                         </MenuItem>
                         <MenuItem>
                           <Link to={"/myApplication"}>My Application</Link>
+                        </MenuItem>
+                        <MenuItem>
+                          <Link to={"/resume/:id"}>Resume</Link>
                         </MenuItem>
                         <MenuItem>
                           <Link to={"/updateProfile"}>Update Profile</Link>

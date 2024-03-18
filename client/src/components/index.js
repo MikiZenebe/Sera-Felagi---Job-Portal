@@ -6,6 +6,9 @@ import Offer from "./HomeComp/Offer";
 import Filter from "./JobsComp/Filter";
 import JobLists from "./JobsComp/JobLists";
 import MyJob from "./JobsComp/MyJob";
+
+import Education from "./ApplicantComp/Education";
+
 import Footer from "./Footer";
 
 export {
@@ -16,5 +19,6 @@ export {
   Filter,
   JobLists,
   MyJob,
+  Education,
   Footer,
 };
