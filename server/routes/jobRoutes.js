@@ -15,7 +15,6 @@ import {
   appRequest,
   deleteJob,
 } from "../controllers/jobController.js";
-import { verifyToken } from "../middlewares/auth.js";
 
 const router = express.Router();
 

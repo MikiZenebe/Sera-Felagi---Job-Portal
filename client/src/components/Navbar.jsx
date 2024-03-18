@@ -75,7 +75,7 @@ export default function Navbar() {
               <Flex className="flex justify-between gap-8">
                 <Link to={"/jobList"}>Find Job</Link>
                 <Link to={"/createJob"}>Create Job</Link>
-                <Link to={"/myJob"}>Job View</Link>
+                <Link to={"/myJobList"}>Job View</Link>
                 <Link to={"/updateProfile"}>Update Profile</Link>
               </Flex>
             ) : null}
@@ -125,7 +125,7 @@ export default function Navbar() {
                           <Link to={"/createJob"}>Create Job</Link>
                         </MenuItem>
                         <MenuItem>
-                          <Link to={"/myJob"}>Job View</Link>
+                          <Link to={"/myJobList"}>Job View</Link>
                         </MenuItem>
                         <MenuItem>
                           <Link to={"/updateProfile"}>Update Profile</Link>

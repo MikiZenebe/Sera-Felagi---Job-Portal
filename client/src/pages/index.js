@@ -5,6 +5,7 @@ import Jobs from "./Jobs";
 import JobDetail from "./JobDetail";
 import CreateJob from "./CreateJob";
 import UpdateProfile from "./UpdateProfile";
+import MyJobList from "./MyJobList";
 
 export {
   HomePage,
@@ -14,4 +15,5 @@ export {
   JobDetail,
   CreateJob,
   UpdateProfile,
+  MyJobList,
 };
