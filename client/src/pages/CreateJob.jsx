@@ -1,5 +1,7 @@
 import {
+  Avatar,
   Button,
+  Center,
   Flex,
   FormControl,
   FormLabel,
@@ -11,13 +13,15 @@ import {
   Textarea,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createNewJobAction } from "../redux/actions/jobActions";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import usePreviewImg from "../hooks/usePreviewImg";
 
 export default function CreateJob() {
+  const fileRef = useRef(null);
   const navigate = useNavigate();
   const [jobTitle, setJobTitle] = useState("");
   const [compName, setCompName] = useState("");
@@ -28,6 +32,8 @@ export default function CreateJob() {
   const [location, setLocation] = useState("");
   const [jobDesc, setJobDesc] = useState("");
   const [jobLevel, setJobLevel] = useState("");
+  const [numOfPosition, setNumOfPosition] = useState("");
+  const { handleImageChange, imgUrl } = usePreviewImg();
 
   const dispatch = useDispatch();
 
@@ -59,6 +65,7 @@ export default function CreateJob() {
         location,
         jobDesc,
         jobLevel,
+        numOfPosition,
         userId: JSON.parse(localStorage.getItem("currentUser")),
       };
       dispatch(createNewJobAction(data, interpretResponse));
@@ -66,6 +73,10 @@ export default function CreateJob() {
       console.log(error);
     }
   };
+
+  const user = JSON.parse(localStorage.getItem("currentUser"))
+    ? JSON.parse(localStorage.getItem("currentUser"))
+    : null;
 
   return (
     <div>
@@ -77,6 +88,27 @@ export default function CreateJob() {
         onSubmit={handleSubmit}
         className="flex flex-col gap-4 my-12 md:w-3/4 mx-auto"
       >
+        <Stack>
+          <FormControl>
+            <Stack direction={["column"]} spacing={6}>
+              <Center>
+                <Avatar size="lg" src={imgUrl || user.profilePic} />
+              </Center>
+
+              <Center w="full">
+                <Button w="full" onClick={() => fileRef.current.click()}>
+                  Add Company Profile Picture
+                </Button>
+                <Input
+                  type="file"
+                  hidden
+                  ref={fileRef}
+                  onChange={handleImageChange}
+                />
+              </Center>
+            </Stack>
+          </FormControl>
+        </Stack>
         <HStack>
           <FormControl className="text-gray-400">
             <FormLabel>Job Title</FormLabel>
@@ -115,14 +147,24 @@ export default function CreateJob() {
           </FormControl>
         </HStack>
 
-        <FormControl className="text-gray-400">
-          <FormLabel>Job Description</FormLabel>
-          <Textarea
-            type="text"
-            value={jobDesc}
-            onChange={(e) => setJobDesc(e.target.value)}
-          />
-        </FormControl>
+        <HStack>
+          <FormControl className="text-gray-400">
+            <FormLabel>Job Description</FormLabel>
+            <Textarea
+              type="text"
+              value={jobDesc}
+              onChange={(e) => setJobDesc(e.target.value)}
+            />
+          </FormControl>
+          <FormControl className="text-gray-400">
+            <FormLabel>Num of Position</FormLabel>
+            <Input
+              type="text"
+              value={numOfPosition}
+              onChange={(e) => setNumOfPosition(e.target.value)}
+            />
+          </FormControl>
+        </HStack>
 
         <HStack>
           <FormControl className="text-gray-400">

@@ -35,13 +35,6 @@ export default function UpdateProfile() {
   const { handleImageChange, imgUrl } = usePreviewImg();
   const [updating, setUpdating] = useState(false);
 
-  const userType = JSON.parse(localStorage.getItem("currentUser"))
-    ? JSON.parse(localStorage.getItem("currentUser")).userType
-    : null;
-  const id = JSON.parse(localStorage.getItem("currentUser"))
-    ? JSON.parse(localStorage.getItem("currentUser"))._id
-    : null;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (updating) return;
@@ -49,7 +42,7 @@ export default function UpdateProfile() {
 
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_API_URL}/auth/update/${id}`,
+        `${process.env.REACT_APP_API_URL}/auth/update/${user._id}`,
         {
           method: "PUT",
           headers: {
@@ -98,7 +91,7 @@ export default function UpdateProfile() {
           </FormControl>
         </Stack>
         <HStack>
-          {userType === "Recuiter" ? (
+          {user.userType === "Recuiter" ? (
             <FormControl className="text-gray-400">
               <FormLabel>Company Name</FormLabel>
               <Input
@@ -149,7 +142,7 @@ export default function UpdateProfile() {
           </FormControl>
         </HStack>
 
-        {userType === "Recuiter" ? (
+        {user.userType === "Recuiter" ? (
           <>
             {" "}
             <FormControl className="text-gray-400">
