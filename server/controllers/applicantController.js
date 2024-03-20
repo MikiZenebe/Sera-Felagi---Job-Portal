@@ -124,15 +124,14 @@ export const addSkills = async (req, res) => {
   }
 };
 export const allUserSkill = async (req, res) => {
-  try {
-    const { userId } = req.body;
+  Skill.find({ userId: req.body.id })
 
-    const getSkill = await Skill.find({ userId });
-    res.status(200).json(getSkill);
-  } catch (error) {
-    console.log("Error in getting skills", error.message);
-    res.status(500).json({ error: error.message });
-  }
+    .then((post) => {
+      res.json(post);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 export const updateSkills = async (req, res) => {
   const { skillType, skillStatus, id } = req.body;

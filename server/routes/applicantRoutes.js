@@ -23,7 +23,7 @@ router.post("/allPort", allUserPortfolio);
 router.post("/addAddress", addAddress);
 router.post("/allAddress", allUserAddress);
 router.post("/addSkills", addSkills);
-router.post("/allSkills", allUserSkill);
+router.get("/allSkills", allUserSkill);
 router.put("/updateSkills", updateSkills);
 router.delete("/deleteSkills", deleteSkills);
 router.post("/profile/me", myProfile);

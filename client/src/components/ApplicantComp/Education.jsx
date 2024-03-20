@@ -68,7 +68,7 @@ export default function Education() {
       className="flex flex-col w-full p-6 rounded-lg gap-2"
       bg={useColorModeValue("white", "#183242")}
     >
-      <div>
+      <div className="flex flex-col gap-3">
         {userEduc &&
           userEduc.map((item) => {
             return (

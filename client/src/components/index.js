@@ -8,6 +8,7 @@ import JobLists from "./JobsComp/JobLists";
 import MyJob from "./JobsComp/MyJob";
 
 import Education from "./ApplicantComp/Education";
+import Skills from "./ApplicantComp/Skills";
 
 import Footer from "./Footer";
 
@@ -20,5 +21,6 @@ export {
   JobLists,
   MyJob,
   Education,
+  Skills,
   Footer,
 };

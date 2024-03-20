@@ -154,3 +154,70 @@ export const userSkills = (id) => async (dispatch) => {
     });
   }
 };
+
+export const addASkill = (post, interpretResponse) => async (dispatch) => {
+  dispatch({
+    type: "ADD_SKILL_REQUEST",
+  });
+
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/applicant/addSkills`,
+      post
+    );
+
+    if (res.status === 200 || res.status === 200) {
+      interpretResponse({
+        message: "Skill Added Successfully",
+        response: "success",
+        res: res.data,
+        responseCode: 200,
+      });
+    } else {
+      interpretResponse({
+        message: "Error While Adding Skill",
+        response: "error",
+        responseCode: 400,
+      });
+    }
+
+    dispatch({
+      type: "ADD_SKILL_SUCCESS",
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "ADD_SKILL_FAILED",
+      payload: error,
+    });
+  }
+};
+
+export const updateASkill = (post) => async (dispatch) => {
+  dispatch({
+    type: "UPDATE_SKILL_REQUEST",
+  });
+
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/applicant/updateSkills`,
+      post
+    );
+
+    const id = post.uId;
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/applicant/allUserSkill`,
+      { id }
+    );
+
+    dispatch({
+      type: "UPDATE_SKILL_SUCCESS",
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "UPDATE_SKILL_FAILED",
+      payload: error,
+    });
+  }
+};
