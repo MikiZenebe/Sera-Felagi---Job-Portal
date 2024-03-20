@@ -1,17 +1,9 @@
 import axios from "axios";
-import {
-  USER_LOGIN_FAILED,
-  USER_LOGIN_REQUEST,
-  USER_LOGIN_SUCCESS,
-  USER_REGISTER_FAILED,
-  USER_REGISTER_REQUEST,
-  USER_REGISTER_SUCCESS,
-} from "../types";
 
 export const registerUser = (user, interpretResponse) => async (dispatch) => {
   try {
     dispatch({
-      type: USER_REGISTER_REQUEST,
+      type: "USER_REGISTER_REQUEST",
     });
 
     const res = await axios.post(
@@ -37,7 +29,7 @@ export const registerUser = (user, interpretResponse) => async (dispatch) => {
     }
 
     dispatch({
-      type: USER_REGISTER_SUCCESS,
+      type: "USER_REGISTER_SUCCESS",
       payload: res.data,
     });
 
@@ -50,7 +42,7 @@ export const registerUser = (user, interpretResponse) => async (dispatch) => {
       responseCode: error.code,
     });
     dispatch({
-      type: USER_REGISTER_FAILED,
+      type: "USER_REGISTER_FAILED",
       payload: error,
     });
   }
@@ -58,7 +50,7 @@ export const registerUser = (user, interpretResponse) => async (dispatch) => {
 
 export const loginUser = (user, interpretResponse) => async (dispatch) => {
   dispatch({
-    type: USER_LOGIN_REQUEST,
+    type: "USER_LOGIN_REQUEST",
   });
 
   try {
@@ -85,14 +77,14 @@ export const loginUser = (user, interpretResponse) => async (dispatch) => {
     }
 
     dispatch({
-      type: USER_LOGIN_SUCCESS,
+      type: "USER_LOGIN_SUCCESS",
       payload: res.data.user,
     });
     //Save to the local storage
     localStorage.setItem("currentUser", JSON.stringify(res.data.user));
   } catch (error) {
     dispatch({
-      type: USER_LOGIN_FAILED,
+      type: "USER_LOGIN_FAILED",
       payload: res.status,
     });
     interpretResponse({

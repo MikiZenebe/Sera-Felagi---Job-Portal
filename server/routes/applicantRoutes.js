@@ -16,16 +16,16 @@ import { verifyToken } from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.post("/addEdu", verifyToken, addEducation);
-router.post("/allEdu", verifyToken, allUserEducation);
-router.post("/addPort", verifyToken, addPortfolio);
-router.post("/allPort", verifyToken, allUserPortfolio);
-router.post("/addAddress", verifyToken, addAddress);
-router.post("/allAddress", verifyToken, allUserAddress);
-router.post("/addSkills", verifyToken, addSkills);
-router.post("/allSkills", verifyToken, allUserSkill);
-router.put("/updateSkills", verifyToken, updateSkills);
-router.delete("/deleteSkills", verifyToken, deleteSkills);
-router.post("/profile/me", verifyToken, myProfile);
+router.post("/addEdu", addEducation);
+router.post("/allEdu", allUserEducation);
+router.post("/addPort", addPortfolio);
+router.post("/allPort", allUserPortfolio);
+router.post("/addAddress", addAddress);
+router.post("/allAddress", allUserAddress);
+router.post("/addSkills", addSkills);
+router.post("/allSkills", allUserSkill);
+router.put("/updateSkills", updateSkills);
+router.delete("/deleteSkills", deleteSkills);
+router.post("/profile/me", myProfile);
 
 export default router;

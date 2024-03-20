@@ -1,29 +1,9 @@
 import axios from "axios";
-import {
-  ADD_JOB_SKILL_FAILED,
-  ADD_JOB_SKILL_REQUEST,
-  ADD_JOB_SKILL_SUCCESS,
-  GET_JOBS_FAILED,
-  GET_JOBS_REQUEST,
-  GET_JOBS_SUCCESS,
-  GET_JOB_BY_ID,
-  GET_JOB_BY_ID_FAILED,
-  GET_JOB_BY_ID_SUCCESS,
-  GET_JOB_SKILL_BY_ID,
-  GET_JOB_SKILL_BY_ID_FAILED,
-  GET_JOB_SKILL_BY_ID_SUCCESS,
-  NEW_JOB_FAILED,
-  NEW_JOB_REQUEST,
-  NEW_JOB_SUCCESS,
-  USER_BY_JOB_ID_FAILED,
-  USER_BY_JOB_ID_REQUEST,
-  USER_BY_JOB_ID_SUCCESS,
-} from "../types";
 
 export const createNewJobAction =
   (user, interpretResponse) => async (dispatch) => {
     dispatch({
-      type: NEW_JOB_REQUEST,
+      type: "NEW_JOB_REQUEST",
     });
 
     try {
@@ -47,13 +27,13 @@ export const createNewJobAction =
         });
       }
       dispatch({
-        type: NEW_JOB_SUCCESS,
+        type: "NEW_JOB_SUCCESS",
         payload: res.data,
       });
       console.log(res.data);
     } catch (error) {
       dispatch({
-        type: NEW_JOB_FAILED,
+        type: "NEW_JOB_FAILED",
         payload: error,
       });
     }
@@ -63,7 +43,7 @@ export const getAllJobAction =
   (type, data = null) =>
   async (dispatch) => {
     dispatch({
-      type: GET_JOBS_REQUEST,
+      type: "GET_JOBS_REQUEST",
     });
 
     try {
@@ -95,12 +75,12 @@ export const getAllJobAction =
       }
 
       dispatch({
-        type: GET_JOBS_SUCCESS,
+        type: "GET_JOBS_SUCCESS",
         payload: response,
       });
     } catch (error) {
       dispatch({
-        type: GET_JOBS_FAILED,
+        type: "GET_JOBS_FAILED",
         payload: error,
       });
     }
@@ -108,7 +88,7 @@ export const getAllJobAction =
 
 export const getJobByIdAction = (id) => async (dispatch) => {
   dispatch({
-    type: GET_JOB_BY_ID,
+    type: "GET_JOB_BY_ID",
   });
 
   try {
@@ -117,12 +97,12 @@ export const getJobByIdAction = (id) => async (dispatch) => {
     );
 
     dispatch({
-      type: GET_JOB_BY_ID_SUCCESS,
+      type: "GET_JOB_BY_ID_SUCCESS",
       payload: res.data,
     });
   } catch (error) {
     dispatch({
-      type: GET_JOB_BY_ID_FAILED,
+      type: "GET_JOB_BY_ID_FAILED",
       payload: error,
     });
   }
@@ -130,7 +110,7 @@ export const getJobByIdAction = (id) => async (dispatch) => {
 
 export const addSkillForJob = (post, interpretResponse) => async (dispatch) => {
   dispatch({
-    type: ADD_JOB_SKILL_REQUEST,
+    type: "ADD_JOB_SKILL_REQUEST",
   });
 
   try {
@@ -155,12 +135,12 @@ export const addSkillForJob = (post, interpretResponse) => async (dispatch) => {
     }
 
     dispatch({
-      type: ADD_JOB_SKILL_SUCCESS,
+      type: "ADD_JOB_SKILL_SUCCESS",
       payload: res.data,
     });
   } catch (error) {
     dispatch({
-      type: ADD_JOB_SKILL_FAILED,
+      type: "ADD_JOB_SKILL_FAILED",
       payload: error,
     });
   }
@@ -168,7 +148,7 @@ export const addSkillForJob = (post, interpretResponse) => async (dispatch) => {
 
 export const getJobSkillByIdAction = (id) => async (dispatch) => {
   dispatch({
-    type: GET_JOB_SKILL_BY_ID,
+    type: "GET_JOB_SKILL_BY_ID",
   });
   try {
     const res = await axios.get(
@@ -176,12 +156,12 @@ export const getJobSkillByIdAction = (id) => async (dispatch) => {
     );
 
     dispatch({
-      type: GET_JOB_SKILL_BY_ID_SUCCESS,
+      type: "GET_JOB_SKILL_BY_ID_SUCCESS",
       payload: res.data,
     });
   } catch (error) {
     dispatch({
-      type: GET_JOB_SKILL_BY_ID_FAILED,
+      type: "GET_JOB_SKILL_BY_ID_FAILED",
       payload: error,
     });
   }
@@ -189,7 +169,7 @@ export const getJobSkillByIdAction = (id) => async (dispatch) => {
 
 export const getAllUserByJobIdAction = (id) => async (dispatch) => {
   dispatch({
-    type: USER_BY_JOB_ID_REQUEST,
+    type: "USER_BY_JOB_ID_REQUEST",
   });
 
   try {
@@ -201,12 +181,12 @@ export const getAllUserByJobIdAction = (id) => async (dispatch) => {
     );
 
     dispatch({
-      type: USER_BY_JOB_ID_SUCCESS,
+      type: "USER_BY_JOB_ID_SUCCESS",
       payload: res.data,
     });
   } catch (error) {
     dispatch({
-      type: USER_BY_JOB_ID_FAILED,
+      type: "USER_BY_JOB_ID_FAILED",
       payload: error,
     });
   }

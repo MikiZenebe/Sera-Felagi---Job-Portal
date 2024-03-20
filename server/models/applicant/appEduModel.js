@@ -8,10 +8,10 @@ const AppEduSchema = new mongoose.Schema(
     instName: {
       type: String,
     },
-    DepName: {
+    depName: {
       type: String,
     },
-    EduLevel: {
+    eduLevel: {
       type: String,
     },
     studyFrom: {

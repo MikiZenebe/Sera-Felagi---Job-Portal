@@ -7,7 +7,7 @@ import User from "../models/userModel.js";
 //Applicant Eduction
 export const addEducation = async (req, res) => {
   try {
-    const { userId, instName, DepName, EduLevel, studyFrom, studyTo } =
+    const { userId, instName, depName, eduLevel, studyFrom, studyTo } =
       req.body;
     const user = await User.findById(userId);
 
@@ -15,8 +15,8 @@ export const addEducation = async (req, res) => {
       userId,
       name: user.name,
       instName,
-      DepName,
-      EduLevel,
+      depName,
+      eduLevel,
       studyFrom,
       studyTo,
     });
@@ -30,8 +30,8 @@ export const addEducation = async (req, res) => {
 };
 export const allUserEducation = async (req, res) => {
   try {
-    const { userId } = req.body;
-    const getEdu = await Education.find({ userId });
+    const { userId } = req.body.id;
+    const getEdu = await Education.find(userId);
 
     res.status(200).json(getEdu);
   } catch (error) {

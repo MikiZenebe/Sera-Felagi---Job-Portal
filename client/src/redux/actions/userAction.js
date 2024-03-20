@@ -1,25 +1,8 @@
 import axios from "axios";
-import {
-  USER_EDUCATIONS_FAILED,
-  USER_EDUCATIONS_REQUEST,
-  USER_EDUCATIONS_SUCCESS,
-  USER_JOB_POST_FAILED,
-  USER_JOB_POST_REQUEST,
-  USER_JOB_POST_SUCCESS,
-  USER_PORTFOLIO_FAILED,
-  USER_PORTFOLIO_REQUEST,
-  USER_PORTFOLIO_SUCCESS,
-  USER_PROFILE_FAILED,
-  USER_PROFILE_REQUEST,
-  USER_PROFILE_SUCCESS,
-  USER_SKILLS_FAILED,
-  USER_SKILLS_REQUEST,
-  USER_SKILLS_SUCCESS,
-} from "../types";
 
 export const getAlljobPostofUser = (id) => async (dispatch) => {
   dispatch({
-    type: USER_JOB_POST_REQUEST,
+    type: "USER_JOB_POST_REQUEST",
   });
 
   try {
@@ -29,13 +12,13 @@ export const getAlljobPostofUser = (id) => async (dispatch) => {
     );
 
     dispatch({
-      type: USER_JOB_POST_SUCCESS,
+      type: "USER_JOB_POST_SUCCESS",
       payload: res.data,
     });
     console.log(res);
   } catch (error) {
     dispatch({
-      type: USER_JOB_POST_FAILED,
+      type: "USER_JOB_POST_FAILED",
       payload: error,
     });
   }
@@ -43,7 +26,7 @@ export const getAlljobPostofUser = (id) => async (dispatch) => {
 
 export const userProfileAction = (id) => async (dispatch) => {
   dispatch({
-    type: USER_PROFILE_REQUEST,
+    type: "USER_PROFILE_REQUEST",
   });
 
   try {
@@ -53,12 +36,12 @@ export const userProfileAction = (id) => async (dispatch) => {
     );
 
     dispatch({
-      type: USER_PROFILE_SUCCESS,
+      type: "USER_PROFILE_SUCCESS",
       payload: res.data,
     });
   } catch (error) {
     dispatch({
-      type: USER_PROFILE_FAILED,
+      type: "USER_PROFILE_FAILED",
       payload: error,
     });
   }
@@ -66,7 +49,7 @@ export const userProfileAction = (id) => async (dispatch) => {
 
 export const userEducations = (id) => async (dispatch) => {
   dispatch({
-    type: USER_EDUCATIONS_REQUEST,
+    type: "USER_EDUCATIONS_REQUEST",
   });
 
   try {
@@ -76,12 +59,51 @@ export const userEducations = (id) => async (dispatch) => {
     );
 
     dispatch({
-      type: USER_EDUCATIONS_SUCCESS,
+      type: "USER_EDUCATIONS_SUCCESS",
       payload: res.data,
     });
   } catch (error) {
     dispatch({
-      type: USER_EDUCATIONS_FAILED,
+      type: "USER_EDUCATIONS_FAILED",
+      payload: error,
+    });
+  }
+};
+
+export const addEducation = (post, interpretResponse) => async (dispatch) => {
+  dispatch({
+    type: "ADD_EDUCATION_REQUEST",
+  });
+
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/applicant/addEdu`,
+      post
+    );
+
+    if (res.status === 200 || res.status === 200) {
+      interpretResponse({
+        message: "Education Added Successfully",
+        response: "success",
+        res: res.data,
+        responseCode: 200,
+      });
+    } else {
+      interpretResponse({
+        message: "Error While Adding Education",
+        response: "error",
+        responseCode: 400,
+      });
+    }
+
+    console.log(res);
+    dispatch({
+      type: "ADD_EDUCATION_SUCCESS",
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "ADD_EDUCATION_FAILED",
       payload: error,
     });
   }
@@ -89,7 +111,7 @@ export const userEducations = (id) => async (dispatch) => {
 
 export const userPortfolio = (id) => async (dispatch) => {
   dispatch({
-    type: USER_PORTFOLIO_REQUEST,
+    type: "USER_PORTFOLIO_REQUEST",
   });
 
   try {
@@ -99,12 +121,12 @@ export const userPortfolio = (id) => async (dispatch) => {
     );
 
     dispatch({
-      type: USER_PORTFOLIO_SUCCESS,
+      type: "USER_PORTFOLIO_SUCCESS",
       payload: res.data,
     });
   } catch (error) {
     dispatch({
-      type: USER_PORTFOLIO_FAILED,
+      type: "USER_PORTFOLIO_FAILED",
       payload: error,
     });
   }
@@ -112,7 +134,7 @@ export const userPortfolio = (id) => async (dispatch) => {
 
 export const userSkills = (id) => async (dispatch) => {
   dispatch({
-    type: USER_SKILLS_REQUEST,
+    type: "USER_SKILLS_REQUEST",
   });
 
   try {
@@ -122,12 +144,12 @@ export const userSkills = (id) => async (dispatch) => {
     );
 
     dispatch({
-      type: USER_SKILLS_SUCCESS,
+      type: "USER_SKILLS_SUCCESS",
       payload: res.data,
     });
   } catch (error) {
     dispatch({
-      type: USER_SKILLS_FAILED,
+      type: "USER_SKILLS_FAILED",
       payload: error,
     });
   }

@@ -145,10 +145,10 @@ export const jobDetail = async (req, res) => {
   }
 };
 export const myJobPost = async (req, res) => {
-  const { userId } = req.body;
+  const { userId } = req.body.id;
 
   try {
-    const myJob = await Job.find({ userId });
+    const myJob = await Job.find(userId);
     res.status(200).json(myJob);
   } catch (error) {
     return res.status(400).json({ message: error });
