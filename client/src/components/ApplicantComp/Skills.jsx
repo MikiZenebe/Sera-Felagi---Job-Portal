@@ -6,6 +6,7 @@ import {
   userSkills,
   addASkill,
   updateASkill,
+  deleteASkill,
 } from "../../redux/actions/userAction";
 import {
   ModalBody,
@@ -23,6 +24,7 @@ import {
   Select,
 } from "@chakra-ui/react";
 import toast from "react-hot-toast";
+import { EditIcon, TrashIcon } from "lucide-react";
 
 export default function Skills() {
   const dispatch = useDispatch();
@@ -99,6 +101,16 @@ export default function Skills() {
     setEAddItem(true);
   };
 
+  const deleteSkillHandler = (element) => {
+    let updateData = {
+      id: element._id,
+      uId: JSON.parse(localStorage.getItem("currentUser"))._id,
+    };
+    console.log(updateData);
+    dispatch(deleteASkill(updateData));
+    setDeleteItem(true);
+  };
+
   return (
     <Flex
       className="flex flex-col w-full p-6 rounded-lg gap-2"
@@ -110,18 +122,26 @@ export default function Skills() {
             return (
               <div key={item._id}>
                 {index % 2 == 0 ? (
-                  <div>
-                    <div>
+                  <div className="flex items-center">
+                    <div className="flex items-center gap-2">
                       <div>
                         <p style={{ fontSize: "20px", fontWeight: "800" }}>
                           {item.skillType}
                         </p>
 
                         <p style={{ fontWeight: "300" }}>
-                          {item.skillStatus && item.skillStatus}{" "}
+                          {item.skillStatus && item.skillStatus}
                         </p>
                       </div>
-                      <div></div>
+                      <div className="flex items-center gap-2">
+                        <p onClick={() => handleEditFunction(item, true)}>
+                          <EditIcon size={20} />
+                        </p>
+
+                        <p onClick={() => deleteSkillHandler(item)}>
+                          <TrashIcon size={20} />
+                        </p>
+                      </div>
                     </div>
                   </div>
                 ) : (
@@ -132,23 +152,21 @@ export default function Skills() {
                     <div className="row">
                       <div className="col-md-8">
                         <p style={{ fontSize: "20px", fontWeight: "800" }}>
-                          {item.skill_name}
+                          {item.skillType}
                         </p>
 
                         <p style={{ fontWeight: "300" }}>
-                          {" "}
-                          {item.skill_status && item.skill_status}{" "}
+                          {item.skillStatus && item.skillStatus}{" "}
                         </p>
                       </div>
                       <div className="col-md-4 mt-2">
-                        <i
-                          className="fas fa-2x fa-pencil-alt"
+                        <EditIcon
                           onClick={() => handleEditFunction(item, true)}
                         >
-                          {" "}
-                        </i>{" "}
+                          Edit
+                        </EditIcon>{" "}
                         {"    "}
-                        <i className="fas fa-2x fa-trash-alt"></i>
+                        <TrashIcon onClick={() => deleteSkillHandler(item)} />
                       </div>
                     </div>
                   </div>
@@ -168,7 +186,9 @@ export default function Skills() {
         <ModalOverlay />
 
         <ModalContent width={"auto"} height={"auto"}>
-          <ModalHeader>Add Skills</ModalHeader>
+          <ModalHeader>
+            {editItem === null ? "Add a Skill" : "Update Skill"}
+          </ModalHeader>
           <ModalCloseButton />
           <form onSubmit={submitHandler}>
             <ModalBody className="flex flex-col gap-3">
