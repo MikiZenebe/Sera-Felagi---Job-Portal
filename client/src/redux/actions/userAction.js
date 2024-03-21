@@ -161,7 +161,7 @@ export const addASkill = (post, interpretResponse) => async (dispatch) => {
   });
 
   try {
-    const response = await axios.post(
+    const res = await axios.post(
       `${process.env.REACT_APP_API_URL}/applicant/addSkills`,
       post
     );
@@ -214,6 +214,55 @@ export const updateASkill = (post) => async (dispatch) => {
       type: "UPDATE_SKILL_SUCCESS",
       payload: response.data,
     });
+  } catch (error) {
+    dispatch({
+      type: "UPDATE_SKILL_FAILED",
+      payload: error,
+    });
+  }
+};
+
+export const deleteASkill = (post, interpretResponse) => async (dispatch) => {
+  dispatch({
+    type: "DELETE_SKILL_REQUEST",
+  });
+
+  try {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_API_URL}/applicant/deleteSkills`,
+      post
+    );
+
+    if (res.status === 200 || res.status === 200) {
+      interpretResponse({
+        message: "Skill Deleted Successfully",
+        response: "success",
+        res: res.data,
+        responseCode: 200,
+      });
+    } else {
+      interpretResponse({
+        message: "Error While Deleting Skill",
+        response: "error",
+        responseCode: 400,
+      });
+    }
+
+    const id = post.uId;
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/applicant/allUserSkill`,
+      { id }
+    );
+
+    dispatch({
+      type: "USER_SKILLS_SUCCESS",
+      payload: response.data,
+    });
+
+    //     dispatch({
+    //        type:'UPDATE_SKILL_SUCCESS',
+    //        payload:response.data
+    //    })
   } catch (error) {
     dispatch({
       type: "UPDATE_SKILL_FAILED",
