@@ -7,7 +7,7 @@ import {
   userProfileAction,
   userSkills,
 } from "../redux/actions/userAction";
-import { Education, Portfolio, Skills } from "../components/index";
+import { AddressLink, Education, Portfolio, Skills } from "../components/index";
 import { Box, Divider, Flex, Text } from "@chakra-ui/react";
 
 export default function Cv() {
@@ -80,15 +80,17 @@ export default function Cv() {
 
         <Divider />
 
-        {/* <div className="cursor-pointer hover:bg-orange-300 p-4 hover:text-white hover:font-semibold flex flex-col gap-3">
-          <div>
-            <h4 className="text-2xl font-bold">PORTFOLIO</h4>
-          </div>
+        <Flex className="cursor-pointer flex flex-col gap-3">
+          <Box>
+            <Text className="text-2xl font-bold">Links & Address</Text>
+          </Box>
 
           <div>
-            <Portfolio />
+            <AddressLink />
           </div>
-        </div> */}
+        </Flex>
+
+        <Divider />
       </div>
     </div>
   );
