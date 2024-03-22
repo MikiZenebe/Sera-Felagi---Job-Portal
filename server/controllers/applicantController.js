@@ -43,7 +43,7 @@ export const allUserEducation = async (req, res) => {
 //Applicant Portfolio
 export const addPortfolio = async (req, res) => {
   try {
-    const { userId, projTitle, projDesc, projLink, img } = req.body;
+    const { userId, projTitle, projDesc, projLink, img, githubLink } = req.body;
 
     const newPort = await Portfolio.create({
       userId,
@@ -51,6 +51,7 @@ export const addPortfolio = async (req, res) => {
       projDesc,
       projLink,
       img,
+      githubLink,
     });
 
     await newPort.save();
@@ -62,8 +63,8 @@ export const addPortfolio = async (req, res) => {
 };
 export const allUserPortfolio = async (req, res) => {
   try {
-    const { userId } = req.body;
-    const getPort = await Portfolio.find({ userId });
+    const { userId } = req.body.id;
+    const getPort = await Portfolio.find(userId);
 
     res.status(200).json(getPort);
   } catch (error) {

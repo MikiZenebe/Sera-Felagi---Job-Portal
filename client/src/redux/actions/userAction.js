@@ -132,6 +132,44 @@ export const userPortfolio = (id) => async (dispatch) => {
   }
 };
 
+export const addPortfolio = (post, interpretResponse) => async (dispatch) => {
+  dispatch({
+    type: "ADD_PORTFOLIO_REQUEST",
+  });
+
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/applicant/addPort`,
+      post
+    );
+
+    if (res.status === 200 || res.status === 200) {
+      interpretResponse({
+        message: "Portfolio Added Successfully",
+        response: "success",
+        res: res.data,
+        responseCode: 200,
+      });
+    } else {
+      interpretResponse({
+        message: "Error While Adding Portfolio",
+        response: "error",
+        responseCode: 400,
+      });
+    }
+
+    dispatch({
+      type: "ADD_PORTFOLIO_SUCCESS",
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "ADD_PORTFOLIO_FAILED",
+      payload: error,
+    });
+  }
+};
+
 export const userSkills = (id) => async (dispatch) => {
   dispatch({
     type: "USER_SKILLS_REQUEST",

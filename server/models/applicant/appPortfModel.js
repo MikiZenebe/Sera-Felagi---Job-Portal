@@ -16,6 +16,9 @@ const AppPortfSchema = new mongoose.Schema(
     projLink: {
       type: String,
     },
+    githubLink: {
+      type: String,
+    },
     img: {
       type: String,
     },

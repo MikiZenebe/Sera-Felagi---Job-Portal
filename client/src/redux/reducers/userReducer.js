@@ -44,7 +44,7 @@ export const userPortfolioReducer = (state = { portfolios: [] }, action) => {
         loading: true,
       };
     case "USER_PORTFOLIO_SUCCESS":
-      return { loading: false, success: true, projects: action.payload };
+      return { loading: false, success: true, portfolios: action.payload };
     case "ADD_PORTFOLIO_SUCCESS":
       return {
         loading: false,

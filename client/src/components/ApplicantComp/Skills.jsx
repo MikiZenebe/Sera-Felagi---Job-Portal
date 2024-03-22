@@ -44,7 +44,6 @@ export default function Skills() {
   }, [dispatch, skillType, deleteItem]);
 
   const { skills } = useSelector((state) => state.userSkillReducer);
-  console.log(skills);
 
   const interpretResponse = (response) => {
     if (response.response === "success" && response.responseCode === 200) {

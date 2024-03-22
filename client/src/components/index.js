@@ -9,6 +9,7 @@ import MyJob from "./JobsComp/MyJob";
 
 import Education from "./ApplicantComp/Education";
 import Skills from "./ApplicantComp/Skills";
+import Portfolio from "./ApplicantComp/Portfolio";
 
 import Footer from "./Footer";
 
@@ -22,5 +23,6 @@ export {
   MyJob,
   Education,
   Skills,
+  Portfolio,
   Footer,
 };

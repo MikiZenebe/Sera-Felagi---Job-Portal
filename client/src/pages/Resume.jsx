@@ -7,7 +7,7 @@ import {
   userProfileAction,
   userSkills,
 } from "../redux/actions/userAction";
-import { Education, Skills } from "../components/index";
+import { Education, Portfolio, Skills } from "../components/index";
 import { Box, Divider, Flex, Text } from "@chakra-ui/react";
 
 export default function Cv() {
@@ -27,7 +27,7 @@ export default function Cv() {
   const { address } = useSelector((state) => state.userAddressReducer);
 
   return (
-    <div>
+    <div className="w-auto">
       <h1 className=" text-center text-4xl font-bold">Resume</h1>
       <div className="my-4 p-10 flex flex-col gap-4">
         <div>
@@ -68,16 +68,17 @@ export default function Cv() {
 
         <Divider />
 
-        {/* <div className="cursor-pointer hover:bg-orange-300 p-4 hover:text-white hover:font-semibold flex flex-col gap-3">
-          <div>
-            <h4 className="text-2xl font-bold">PERSONAL PROJECTS</h4>
-          </div>
+        <Flex className="cursor-pointer flex flex-col gap-3">
+          <Box>
+            <Text className="text-2xl font-bold">Pesronal Portfolios</Text>
+          </Box>
 
           <div>
-            <Project />
+            <Portfolio />
           </div>
-        </div> */}
-        <hr />
+        </Flex>
+
+        <Divider />
 
         {/* <div className="cursor-pointer hover:bg-orange-300 p-4 hover:text-white hover:font-semibold flex flex-col gap-3">
           <div>
