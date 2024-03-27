@@ -16,13 +16,13 @@ export default function MyJobList() {
   const { jobsPost } = useSelector((state) => state.getUserAllJobPostReducer);
 
   return (
-    <div className="w-full">
-      <div>
+    <div className="w-full ">
+      <div className="overflow-scroll lg:overflow-hidden">
         <h3 className="text-start text-2xl font-bold my-2">
           All My Job Post is Here
         </h3>
 
-        <table className="md:w-[1000px] w-[500px] border  mt-6 text-gray-400">
+        <table className="md:w-[1000px] w-[600px] border  mt-6 text-gray-400 ">
           <thead>
             <tr className="border  text-center text-xs font-semibold uppercase tracking-widest text-gray-400">
               <th className="px-5 py-3 text-[10px]">Job Title</th>
