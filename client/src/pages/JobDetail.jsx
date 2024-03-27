@@ -92,6 +92,9 @@ export default function JobDetail() {
     }
   };
 
+  //Calculate remaining days until expiration
+  const remainingDays = moment(job.expiryDate).diff(moment(), "days");
+
   return (
     <Flex className="w-full gap-4 flex flex-col md:flex-row">
       <Flex
@@ -219,7 +222,10 @@ export default function JobDetail() {
                   <Text className="text-xs font-medium text-gray-400">
                     JOB EXPIRE IN:
                   </Text>
-                  <Text className="text-xs font-medium ">28 Jun, 2023</Text>
+                  <Text className="text-xs font-medium ">
+                    {moment(job.expiryDate).format("D MMM, YYYY")} (
+                    {remainingDays})
+                  </Text>
                 </Box>
               </Flex>
 

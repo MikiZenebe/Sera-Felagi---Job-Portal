@@ -3,6 +3,33 @@ import ReqSkill from "../models/job/requiredSkillModel.js";
 import JobDetail from "../models/job/jobDetailModel.js";
 import Application from "../models/applicationModel.js";
 
+//Function to delete expired jobs
+const deleteExpiredJobs = async () => {
+  try {
+    //Calculate the current date and time
+    const currentDate = new Date();
+
+    //Calculate the date 10 days ago
+    const tenDaysAgo = new Date(currentDate);
+    tenDaysAgo.setDate(currentDate.getDate() - 10);
+
+    //Find and delete jobs that have expired
+    await Job.deleteMany({ expiryDate: { $lte: tenDaysAgo } });
+    res.status(200).json("Expired job deleted");
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+};
+
+//Schedule recurring task to delete
+const scheduleJobDeletion = () => {
+  //runs every day
+  setInterval(deleteExpiredJobs, 24 * 60 * 60 * 1000);
+};
+
+//start the job deletion scheduler
+scheduleJobDeletion();
+
 export const addJob = async (req, res) => {
   try {
     const {
@@ -19,6 +46,10 @@ export const addJob = async (req, res) => {
       numOfPosition,
     } = req.body;
 
+    //Calculate expiry date
+    const expiryDate = new Date();
+    expiryDate.setDate(expiryDate.getDate() + 10);
+
     const newJob = await Job.create({
       userId,
       jobTitle,
@@ -31,6 +62,7 @@ export const addJob = async (req, res) => {
       jobDesc,
       jobLevel,
       numOfPosition,
+      expiryDate,
     });
 
     await newJob.save();
