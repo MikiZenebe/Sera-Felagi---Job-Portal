@@ -30,7 +30,7 @@ export default function MyJobList() {
           All My Job Post is Here
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full py-6 mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 w-full py-6 mx-auto">
           {jobsPost.map((item) => {
             return (
               <>
@@ -41,23 +41,8 @@ export default function MyJobList() {
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
                       <div>
-                        {" "}
                         <h4 className="font-semibold">{item.jobTitle}</h4>
                         <p className="text-xs text-gray-400">{item.compName}</p>
-                      </div>
-
-                      <div>
-                        <div className="flex gap-3">
-                          <p className="text-[#8e58ec] text-xs font-semibold">
-                            Applicant Detail
-                          </p>
-
-                          <Link to={`/job/${item._id}`}>
-                            <p className="text-[#60c457] text-xs font-semibold">
-                              Job Details
-                            </p>
-                          </Link>
-                        </div>
                       </div>
                     </div>
 
@@ -77,6 +62,20 @@ export default function MyJobList() {
                       <p className="text-[#3AC2BA] font-semibold">
                         ${item.salary}
                       </p>
+                    </div>
+
+                    <div className="my-2">
+                      <div className="flex gap-3">
+                        <button className="text-[#8e58ec] p-2 rounded-md border border-[#8e58ec] text-xs font-semibold">
+                          Applicant Detail
+                        </button>
+
+                        <Link to={`/job/${item._id}`}>
+                          <p className="text-[#60c457] p-2 rounded-md border border-[#60c457] text-xs font-semibold">
+                            Job Details
+                          </p>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -7,6 +7,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { PlayCircleIcon, Briefcase } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
@@ -36,7 +37,7 @@ export default function HeroSection() {
             color={useColorModeValue("white", "white")}
             _hover={"none"}
           >
-            Browse Jobs
+            <Link to={"/jobList"}>Browse Jobs</Link>
           </Button>
         </Box>
       </Flex>
