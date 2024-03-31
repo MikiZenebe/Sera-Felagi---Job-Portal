@@ -7,6 +7,7 @@ import CreateJob from "./CreateJob";
 import UpdateProfile from "./UpdateProfile";
 import MyJobList from "./MyJobList";
 import Resume from "./Resume";
+import JobApply from "./JobApply";
 
 export {
   HomePage,
@@ -18,4 +19,5 @@ export {
   UpdateProfile,
   MyJobList,
   Resume,
+  JobApply,
 };

@@ -90,14 +90,16 @@ export default function JobLists({ jobs }) {
               </Flex>
 
               <Flex className="flex gap-3">
-                <Button
-                  size={"sm"}
-                  bg={useColorModeValue("#6A38C2", "#6A38C2")}
-                  color={useColorModeValue("white", "white")}
-                  _hover={useColorModeValue("", "#183242")}
-                >
-                  Apply Now
-                </Button>
+                <Link to={`/apply/${item._id}`}>
+                  <Button
+                    size={"sm"}
+                    bg={useColorModeValue("#6A38C2", "#6A38C2")}
+                    color={useColorModeValue("white", "white")}
+                    _hover={useColorModeValue("", "#183242")}
+                  >
+                    Apply Now
+                  </Button>
+                </Link>
 
                 <Link to={`/job/${item._id}`}>
                   <Button

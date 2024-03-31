@@ -10,6 +10,7 @@ import {
   UpdateProfile,
   MyJobList,
   Resume,
+  JobApply,
 } from "./pages/index";
 
 export default function App() {
@@ -43,6 +44,7 @@ export default function App() {
           />
           <Route path="/myJobList" exact element={<MyJobList />} />
           <Route path="/resume/:id" exact element={<Resume />} />
+          <Route path="/apply/:id" exact element={<JobApply />} />
         </Routes>
       </div>
 

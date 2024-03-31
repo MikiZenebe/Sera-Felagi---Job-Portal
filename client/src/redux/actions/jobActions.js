@@ -191,3 +191,41 @@ export const getAllUserByJobIdAction = (id) => async (dispatch) => {
     });
   }
 };
+
+export const applyForJobAction =
+  (user, interpretResponse) => async (dispatch) => {
+    dispatch({
+      type: "USER_APPLY_JOB_REGISTER_REQUEST",
+    });
+
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/job/applyJob`,
+        user
+      );
+
+      if (res.status === 200 || res.status === 200) {
+        interpretResponse({
+          message: "Job Applied Successfully",
+          response: "success",
+          res: res.data,
+          responseCode: 200,
+        });
+      } else {
+        interpretResponse({
+          message: "Error While Job Applied",
+          response: "error",
+          responseCode: 400,
+        });
+      }
+
+      dispatch({
+        type: "USER_APPLY_JOB_REGISTER_SUCCESS",
+      });
+    } catch (error) {
+      dispatch({
+        type: "USER_APPLY_JOB_REGISTER_FAILED",
+        payload: error,
+      });
+    }
+  };
