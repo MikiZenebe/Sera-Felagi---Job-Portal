@@ -74,6 +74,9 @@ export default function Navbar() {
             ) : null}
             {userType === "Recuiter" ? (
               <Flex className="flex justify-between gap-8">
+                <Link to={"/"} className="active:text-[#6A38C2]">
+                  Home
+                </Link>
                 <Link to={"/jobList"}>Find Job</Link>
                 <Link to={"/createJob"}>Create Job</Link>
                 <Link to={"/myJobList"}>Job View</Link>
@@ -122,6 +125,9 @@ export default function Navbar() {
                     ) : null}
                     {userType === "Recuiter" ? (
                       <Box>
+                        <MenuItem>
+                          <Link to={"/"}>Home</Link>
+                        </MenuItem>
                         <MenuItem>
                           <Link to={"/jobList"}>Find Job</Link>
                         </MenuItem>

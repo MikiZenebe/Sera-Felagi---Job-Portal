@@ -190,8 +190,8 @@ export const userByJobId = async (req, res) => {
   const { jobId } = req.body;
 
   try {
-    const userByJid = await Application.find({ jobId });
-    res.status(200).json(userByJid);
+    const userById = await Application.find({ jobId });
+    res.status(200).json(userById);
   } catch (error) {
     return res.status(400).json({ message: error });
   }
@@ -200,7 +200,7 @@ export const jobAppliById = async (req, res) => {
   const { userId } = req.body;
 
   try {
-    const application = await Application.find({ userId });
+    const application = await Application.find(userId);
     if (!application) {
       return res.status(404).json({ message: "Application not found" });
     }

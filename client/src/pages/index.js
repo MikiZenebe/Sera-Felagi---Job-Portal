@@ -8,6 +8,7 @@ import UpdateProfile from "./UpdateProfile";
 import MyJobList from "./MyJobList";
 import Resume from "./Resume";
 import JobApply from "./JobApply";
+import MyApplication from "./MyApplication";
 
 export {
   HomePage,
@@ -20,4 +21,5 @@ export {
   MyJobList,
   Resume,
   JobApply,
+  MyApplication,
 };

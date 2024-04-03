@@ -229,3 +229,26 @@ export const applyForJobAction =
       });
     }
   };
+
+export const getAllJobAppliByuserId = (id) => async (dispatch) => {
+  dispatch({
+    type: "USER_JOB_BY_USER_ID_REQUEST",
+  });
+
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/job/appliedJob`,
+      { id }
+    );
+
+    dispatch({
+      type: "USER_JOB_BY_USER_ID_SUCCESS",
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "USER_JOB_BY_USER_ID_FAILED",
+      payload: error,
+    });
+  }
+};
