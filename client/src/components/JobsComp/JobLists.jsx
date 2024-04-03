@@ -22,7 +22,7 @@ export default function JobLists({ jobs }) {
     }
   };
 
-  const user = JSON.parse(localStorage.getItem("currentUser"))
+  const userId = JSON.parse(localStorage.getItem("currentUser"))
     ? JSON.parse(localStorage.getItem("currentUser"))
     : null;
 
@@ -90,16 +90,34 @@ export default function JobLists({ jobs }) {
               </Flex>
 
               <Flex className="flex gap-3">
-                <Link to={`/apply/${item._id}`}>
-                  <Button
-                    size={"sm"}
-                    bg={useColorModeValue("#6A38C2", "#6A38C2")}
-                    color={useColorModeValue("white", "white")}
-                    _hover={useColorModeValue("", "#183242")}
-                  >
-                    Apply Now
-                  </Button>
-                </Link>
+                <Flex className="flex items-center gap-2">
+                  {item.userId !== userId._id && (
+                    <div key={item._id}>
+                      {item.jobCount?.includes(userId._id) ? (
+                        <Button
+                          size={"sm"}
+                          bg={useColorModeValue("#9672db", "#9672db")}
+                          color={useColorModeValue("white", "white")}
+                          variant={"disabled"}
+                          cursor={"not-allowed"}
+                        >
+                          Already Applied
+                        </Button>
+                      ) : (
+                        <Link to={`/apply/${item._id}`}>
+                          <Button
+                            size={"sm"}
+                            bg={useColorModeValue("#6A38C2", "#6A38C2")}
+                            color={useColorModeValue("white", "white")}
+                            _hover={useColorModeValue("", "#183242")}
+                          >
+                            Apply Now
+                          </Button>
+                        </Link>
+                      )}
+                    </div>
+                  )}
+                </Flex>
 
                 <Link to={`/job/${item._id}`}>
                   <Button

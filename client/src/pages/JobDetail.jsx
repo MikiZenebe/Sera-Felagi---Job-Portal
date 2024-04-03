@@ -156,9 +156,6 @@ export default function JobDetail() {
           </Flex>
         </Flex>
         <Flex className="my-3 flex flex-col gap-4">
-          <Text className="font-bold">
-            Number Of Application: {job?.jobCount?.length}
-          </Text>
           <Flex className="flex flex-col gap-2">
             <Text className="font-bold">Job Description</Text>
             <Text className="text-gray-400">{job.jobDesc}</Text>
@@ -180,21 +177,23 @@ export default function JobDetail() {
               )}
             </Flex>
 
-            <Flex className="flex gap-1">
+            <Flex className="flex gap-1.5">
               {jobskill?.map((item, i) => (
                 <>
                   {" "}
                   <Text
                     key={i}
-                    color={useColorModeValue("#57AB57", "#6add6a")}
-                    className="font-semibold"
+                    className="font-semibold bg-[#9672db] py-0.5 px-2 rounded-lg  text-white"
                   >
                     {item.reqSkill}
                   </Text>
-                  <Box className="bg-gray-400 w-[1px] rounded-full h-auto"></Box>
                 </>
               ))}
             </Flex>
+
+            <Text className="font-bold">
+              Number Of Application: {job?.jobCount?.length}
+            </Text>
           </Flex>
         </Flex>
       </Flex>
