@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   applyForJobAction,
   getJobByIdAction,
@@ -15,6 +15,7 @@ import { Button, Textarea, useColorModeValue } from "@chakra-ui/react";
 import toast from "react-hot-toast";
 
 export default function JobApply() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [letter, setLetter] = useState("");
   const [availability, setAvailability] = useState("");
@@ -42,7 +43,7 @@ export default function JobApply() {
         position: "top-center",
       });
 
-      window.location.replace("/jobList");
+      navigate(`/job/${job._id}`);
     } else {
       toast.error(response.message, {
         duration: 1500,
@@ -51,7 +52,8 @@ export default function JobApply() {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const obj = {
       AppliName: JSON.parse(localStorage.getItem("currentUser")).name,
       coverLetter: letter,
@@ -76,9 +78,11 @@ export default function JobApply() {
 
         <div>
           <h3 className="text-xl font-semibold">Cover letter</h3>
-          <p>Why should you be hired for this role?</p>
+          <p className="text-gray-400">
+            Why should you be hired for this role?
+          </p>
           <Textarea
-            className="transition-all duration-[300ms] ease-out rounded-lg  appearance-none border border-orange-300  py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent w-[600px]"
+            className="transition-all duration-[300ms] ease-out rounded-lg  appearance-none border border-orange-300  py-2 px-4 bg-white  placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent w-[600px]"
             value={letter}
             rows="5"
             onChange={(e) => setLetter(e.target.value)}
@@ -98,13 +102,13 @@ export default function JobApply() {
         <br />
         <div>
           <h3 className="text-xl font-semibold">Assessment</h3>
-          <p>
+          <p className="text-gray-400">
             Q1. If you have any experience in {job && job.jobTitle}, please
             share. If you want to share any documents or files, please upload it
             on Google Drive or Dropbox and paste the public link in the answer.
           </p>
           <Textarea
-            className="transition-all duration-[300ms] ease-out rounded-lg  appearance-none border border-orange-300  py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent w-[600px]"
+            className="transition-all duration-[300ms] ease-out rounded-lg  appearance-none border border-orange-300  py-2 px-4 bg-white  placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent w-[600px]"
             rows="3"
             onChange={(e) => setAssessment(e.target.value)}
             value={assessment}

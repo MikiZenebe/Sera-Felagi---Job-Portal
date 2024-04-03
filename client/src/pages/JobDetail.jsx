@@ -17,7 +17,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Blocks, Calendar, Clock, TrashIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -92,11 +92,11 @@ export default function JobDetail() {
     }
   };
 
-  //Calculate remaining days until expiration
-  const remainingDays = moment(job.expiryDate).diff(moment(), "days");
+  // //Calculate remaining days until expiration
+  // const remainingDays = moment(job.expiryDate).diff(moment(), "days");
 
   return (
-    <Flex className="w-full gap-4 flex flex-col md:flex-row">
+    <Flex key={job._id} className="w-full gap-4 flex flex-col md:flex-row">
       <Flex
         className="flex flex-col w-full md:w-3/4 lg:w-3/4 p-6 rounded-lg gap-2 mx-auto"
         bg={useColorModeValue("white", "#183242")}
@@ -116,14 +116,32 @@ export default function JobDetail() {
           </Flex>
 
           <Flex className="flex items-center gap-2">
-            <Button
-              size={"sm"}
-              bg={useColorModeValue("#6A38C2", "#6A38C2")}
-              color={useColorModeValue("white", "white")}
-              _hover={useColorModeValue("", "#183242")}
-            >
-              Apply Now
-            </Button>
+            {job && job.userId !== userId && (
+              <div key={job._id}>
+                {job && job.jobCount?.includes(userId) ? (
+                  <Button
+                    size={"sm"}
+                    bg={useColorModeValue("#9672db", "#9672db")}
+                    color={useColorModeValue("white", "white")}
+                    variant={"disabled"}
+                    cursor={"not-allowed"}
+                  >
+                    Already Applied
+                  </Button>
+                ) : (
+                  <Link to={`/apply/${job._id}`}>
+                    <Button
+                      size={"sm"}
+                      bg={useColorModeValue("#6A38C2", "#6A38C2")}
+                      color={useColorModeValue("white", "white")}
+                      _hover={useColorModeValue("", "#183242")}
+                    >
+                      Apply Now
+                    </Button>
+                  </Link>
+                )}
+              </div>
+            )}
 
             {userId === job?.userId && (
               <Box
@@ -137,13 +155,14 @@ export default function JobDetail() {
             )}
           </Flex>
         </Flex>
-
         <Flex className="my-3 flex flex-col gap-4">
+          <Text className="font-bold">
+            Number Of Application: {job?.jobCount?.length}
+          </Text>
           <Flex className="flex flex-col gap-2">
             <Text className="font-bold">Job Description</Text>
             <Text className="text-gray-400">{job.jobDesc}</Text>
           </Flex>
-
           <Flex className="flex flex-col gap-3">
             <Flex className="flex items-center gap-2">
               <Text className="font-bold">Essential Skills</Text>
@@ -223,8 +242,9 @@ export default function JobDetail() {
                     JOB EXPIRE IN:
                   </Text>
                   <Text className="text-xs font-medium ">
-                    {moment(job.expiryDate).format("D MMM, YYYY")} (
-                    {remainingDays})
+                    {/* {moment(job.expiryDate).format("D MMM, YYYY")} (
+                    {remainingDays}) */}{" "}
+                    Unkown
                   </Text>
                 </Box>
               </Flex>
