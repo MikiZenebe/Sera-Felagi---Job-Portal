@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Filter, JobLists } from "../components/index";
+import { Filter, JobLists } from "../../components/index";
 import { useEffect } from "react";
-import { getAllJobAction } from "../redux/actions/jobActions";
+import { getAllJobAction } from "../../redux/actions/jobActions";
 
 export default function Jobs() {
   const dispatch = useDispatch();

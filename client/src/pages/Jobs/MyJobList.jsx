@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAlljobPostofUser } from "../redux/actions/userAction";
+import { getAlljobPostofUser } from "../../redux/actions/userAction";
 import { Link } from "react-router-dom";
 import {
   Avatar,

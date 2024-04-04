@@ -4,13 +4,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import {
   applyForJobAction,
   getJobByIdAction,
-} from "../redux/actions/jobActions";
+} from "../../redux/actions/jobActions";
 import {
   userEducations,
   userPortfolio,
   userProfileAction,
   userSkills,
-} from "../redux/actions/userAction";
+} from "../../redux/actions/userAction";
 import { Button, Textarea, useColorModeValue } from "@chakra-ui/react";
 import toast from "react-hot-toast";
 

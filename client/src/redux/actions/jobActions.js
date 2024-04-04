@@ -252,3 +252,23 @@ export const getAllJobAppliByuserId = (id) => async (dispatch) => {
     });
   }
 };
+
+export const getApplicaByIdAction = (id) => async (dispatch) => {
+  dispatch({
+    type: "GET_APPLICATION_BY_ID",
+  });
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_URL}/job/application/${id}`
+    );
+    dispatch({
+      type: "GET_APPLICATION_BY_ID_SUCCESS",
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "GET_APPLICATION_BY_ID_FAILED",
+      payload: error,
+    });
+  }
+};

@@ -25,7 +25,7 @@ import {
   getAllUserByJobIdAction,
   getJobByIdAction,
   getJobSkillByIdAction,
-} from "../redux/actions/jobActions";
+} from "../../redux/actions/jobActions";
 import moment from "moment";
 import axios from "axios";
 import toast from "react-hot-toast";

@@ -125,3 +125,19 @@ export const getJobAppliByUserIdReducer = (state = { myJob: [] }, action) => {
       return state;
   }
 };
+
+export const getApplicationByIdReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "GET_APPLICATION_BY_ID":
+      return { ...state, loading: true };
+    case "GET_APPLICATION_BY_ID_SUCCESS":
+      return {
+        applica: action.payload,
+        loading: false,
+      };
+    case "GET_APPLICATION_BY_ID_FAILED":
+      return { error: action.payload, loading: false };
+    default:
+      return state;
+  }
+};

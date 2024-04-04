@@ -6,8 +6,13 @@ import {
   userPortfolio,
   userProfileAction,
   userSkills,
-} from "../redux/actions/userAction";
-import { AddressLink, Education, Portfolio, Skills } from "../components/index";
+} from "../../redux/actions/userAction";
+import {
+  AddressLink,
+  Education,
+  Portfolio,
+  Skills,
+} from "../../components/index";
 import { Box, Divider, Flex, Text } from "@chakra-ui/react";
 
 export default function Cv() {

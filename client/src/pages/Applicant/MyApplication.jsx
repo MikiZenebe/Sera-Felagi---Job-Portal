@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getAllJobAction,
   getAllJobAppliByuserId,
-} from "../redux/actions/jobActions";
+} from "../../redux/actions/jobActions";
 import { Link } from "react-router-dom";
 import { Button, useColorModeValue } from "@chakra-ui/react";
 

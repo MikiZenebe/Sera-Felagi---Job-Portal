@@ -15,10 +15,10 @@ import {
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { createNewJobAction } from "../redux/actions/jobActions";
+import { createNewJobAction } from "../../redux/actions/jobActions";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import usePreviewImg from "../hooks/usePreviewImg";
+import usePreviewImg from "../../hooks/usePreviewImg";
 
 export default function CreateJob() {
   const fileRef = useRef(null);
