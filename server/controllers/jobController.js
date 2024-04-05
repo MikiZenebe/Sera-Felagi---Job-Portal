@@ -235,8 +235,8 @@ export const getRequiredSkill = async (req, res) => {
 };
 export const applicationById = async (req, res) => {
   try {
-    Application.find({ _id: req.params.id });
-    res.status(200).json("Yes");
+    const getAppDetail = await Application.find({ _id: req.params.id });
+    res.status(200).json(getAppDetail);
   } catch (error) {
     return res.status(400).json({ message: error });
   }
