@@ -10,6 +10,7 @@ import Resume from "./Applicant/Resume";
 import JobApply from "./Jobs/JobApply";
 import MyApplication from "./Applicant/MyApplication";
 import MyAppDetail from "./Applicant/MyAppDetail";
+import ApplicantList from "./Applicant/ApplicantList";
 
 export {
   HomePage,
@@ -24,4 +25,5 @@ export {
   JobApply,
   MyApplication,
   MyAppDetail,
+  ApplicantList,
 };

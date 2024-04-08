@@ -243,15 +243,7 @@ export const applicationById = async (req, res) => {
 };
 
 export const appRequest = async (req, res) => {
-  const { _id } = req.body;
-
-  try {
-    const appliRequest = await Application.find({ _id });
-    appliRequest[0].status = req.body.stausType;
-    await appliRequest[0].save();
-
-    res.status(200).json(appliRequest);
-  } catch (error) {
-    return res.status(400).json({ message: error });
-  }
+  const app = await Application.find({ _id: req.body.id });
+  app[0].status = req.body.statusType;
+  await app[0].save();
 };

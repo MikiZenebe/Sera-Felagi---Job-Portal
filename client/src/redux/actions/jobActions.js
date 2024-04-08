@@ -272,3 +272,24 @@ export const getApplicaByIdAction = (id) => async (dispatch) => {
     });
   }
 };
+
+export const getAppReqStatusByIdAction = (obj) => async (dispatch) => {
+  dispatch({
+    type: "GET_APPSTATUS_BY_ID",
+  });
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/job/appReq`,
+      obj
+    );
+    dispatch({
+      type: "GET_APPSTATUS_SUCCESS",
+      payload: response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: "GET_APPSTATUS_FAILED",
+      payload: error,
+    });
+  }
+};

@@ -66,15 +66,15 @@ export default function MyJobList() {
 
                     <div className="my-2">
                       <div className="flex gap-3">
-                        <button className="text-[#8e58ec] p-2 rounded-md border border-[#8e58ec] text-xs font-semibold">
-                          Applicant Detail
+                        <button className="text-[#8e58ec] p-2 rounded-md border border-[#8e58ec] hover:bg-[#8e58ec] hover:text-white text-xs font-semibold">
+                          <Link to={`/job/application/${item._id}`}>
+                            Applicant Detail
+                          </Link>
                         </button>
 
-                        <Link to={`/job/${item._id}`}>
-                          <p className="text-[#60c457] p-2 rounded-md border border-[#60c457] text-xs font-semibold">
-                            Job Details
-                          </p>
-                        </Link>
+                        <button className="text-[#60c457] hover:bg-[#60c457] hover:text-white p-2 rounded-md border border-[#60c457] text-xs font-semibold">
+                          <Link to={`/job/${item._id}`}>Job Details</Link>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -83,76 +83,6 @@ export default function MyJobList() {
             );
           })}
         </div>
-
-        {/* <table className="md:w-[1000px] w-[600px] border  mt-6 text-gray-400 ">
-          <thead>
-            <tr className="border  text-center text-xs font-semibold uppercase tracking-widest text-gray-400">
-              <th className="px-5 py-3 text-[10px]">Job Title</th>
-              <th className="px-5 py-3 text-[10px]">Company Name</th>
-              <th className="px-5 py-3 text-[10px]">Work From</th>
-              <th className="px-5 py-3 text-[10px]">Location</th>
-              <th className="px-5 py-3 text-[10px]">Duration</th>
-              <th className="px-5 py-3 text-[10px]">Salary</th>
-              <th className="px-5 py-3 text-[10px]">Action</th>
-              <th className="px-5 py-3 text-[10px]"></th>
-            </tr>
-          </thead>
-
-          {jobsPost?.map((item) => {
-            return (
-              <>
-                <tbody
-                  key={item._id}
-                  className=" hover:bg-gray-100  transition-all duration-150 ease-in-out cursor-pointer"
-                >
-                  <tr className="text-center border">
-                    <td className="px-5 text-sm font-semibold">
-                      <p className="whitespace-no-wrap text-center">
-                        {item?.jobTitle}
-                      </p>
-                    </td>
-                    <td className="px-5 py-1 text-sm">
-                      <div className="flex items-center">
-                        <div className="ml-3">
-                          <p className="whitespace-no-wrap text-center">
-                            {item?.compName}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-5 py-1 text-sm">
-                      <p className="whitespace-no-wrap">{item?.WorkFrom}</p>
-                    </td>
-                    <td className="px-5 py-1 text-sm">
-                      <p className="whitespace-no-wrap">{item?.location}</p>
-                    </td>
-                    <td className="px-5 py-1 text-sm">
-                      <p className="whitespace-no-wrap">{item?.jobDuration}</p>
-                    </td>
-                    <td className=" px-5 py-1 text-sm">
-                      <p className="whitespace-no-wrap">{item?.salary}</p>
-                    </td>
-                    <td className="px-3 text-sm">
-                      <Link to={`/job/application/`}>
-                        <button className=" text-[#6F4DAC] font-semibold w-fit">
-                          Applicant Detail
-                        </button>
-                      </Link>
-                    </td>
-                    <td className="px-5 py-1 text-sm">
-                      <Link to={`/job/${item._id}`}>
-                        {" "}
-                        <button className=" text-[#39cf78] font-semibold w-fit py-3">
-                          Job Detail
-                        </button>
-                      </Link>
-                    </td>
-                  </tr>
-                </tbody>
-              </>
-            );
-          })}
-        </table> */}
       </div>
     </div>
   );

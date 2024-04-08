@@ -13,6 +13,7 @@ import {
   JobApply,
   MyApplication,
   MyAppDetail,
+  ApplicantList,
 } from "./pages/index";
 
 export default function App() {
@@ -52,6 +53,11 @@ export default function App() {
             path="/myapplication/:appId/job/:jobid"
             exact
             element={<MyAppDetail />}
+          />
+          <Route
+            path="/job/application/:id"
+            exact
+            element={<ApplicantList />}
           />
         </Routes>
       </div>
